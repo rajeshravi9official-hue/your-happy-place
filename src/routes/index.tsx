@@ -135,9 +135,9 @@ function Playbook() {
             <img
               src={LOGO}
               alt="Redbelly DAO Task 16 mark"
-              width={36}
-              height={36}
-              className="block h-9 w-9 shrink-0 object-contain"
+              width={108}
+              height={108}
+              className="block h-[108px] w-[108px] shrink-0 object-contain"
             />
           </a>
           <ul className="flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
