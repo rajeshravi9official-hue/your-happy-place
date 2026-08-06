@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-const LOGO =
-  "https://raw.githubusercontent.com/0xDarkSeidBull/dao-redbelly/main/task16-rbnt-recovery-playbook/task16logo.png";
+const LOGO = "/task16logo.png";
 const PDF =
   "https://raw.githubusercontent.com/0xDarkSeidBull/dao-redbelly/main/task16-rbnt-recovery-playbook/Unstick_Your_RBNT_Recovery_Playbook.pdf";
 const DOCX =
@@ -132,8 +131,14 @@ function Playbook() {
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-50 border-b border-border bg-[#0f1b2d]/95 backdrop-blur">
         <nav className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-3 sm:px-6 lg:flex-row lg:items-center lg:gap-6">
-          <a href="#top" className="flex shrink-0 items-center" aria-label="Back to top">
-            <img src={LOGO} alt="Redbelly DAO Task 16 mark" className="h-9 w-9" />
+          <a href="#top" className="flex shrink-0 items-center self-start lg:self-center" aria-label="Back to top">
+            <img
+              src={LOGO}
+              alt="Redbelly DAO Task 16 mark"
+              width={36}
+              height={36}
+              className="block h-9 w-9 shrink-0 object-contain"
+            />
           </a>
           <ul className="flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
             {NAV.map((item) => (
