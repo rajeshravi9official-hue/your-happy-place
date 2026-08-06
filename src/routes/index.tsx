@@ -197,7 +197,7 @@ function Playbook() {
             Full document, rendered inline
           </p>
           <iframe
-            src={PDF}
+            src={PDF_VIEWER}
             title="Unstick Your RBNT: A Cross Chain Recovery Playbook (PDF)"
             className="h-[700px] w-full border border-border bg-[#f7f5ef] sm:h-[820px]"
           />
