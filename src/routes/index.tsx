@@ -6,6 +6,10 @@ const PDF =
   "https://raw.githubusercontent.com/0xDarkSeidBull/dao-redbelly/main/task16-rbnt-recovery-playbook/Unstick_Your_RBNT_Recovery_Playbook.pdf";
 const DOCX =
   "https://raw.githubusercontent.com/0xDarkSeidBull/dao-redbelly/main/task16-rbnt-recovery-playbook/Unstick_Your_RBNT_Recovery_Playbook.docx";
+// raw.githubusercontent serves PDFs as an attachment, which browsers download instead of
+// rendering. The inline frame uses a read only viewer so nothing ever auto-downloads.
+const PDF_VIEWER = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(PDF)}`;
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
