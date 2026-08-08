@@ -140,18 +140,22 @@ function Playbook() {
               className="block h-[108px] w-[108px] shrink-0 object-contain"
             />
           </a>
-          <ul className="flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
-            {NAV.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  className="border-b border-transparent py-1 font-sans text-[#e4ebf0] normal-case transition-colors hover:border-b-[#EF5350] hover:text-[#ffb3ae] focus-visible:text-[#ffb3ae]"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+          <ul className="flex flex-wrap gap-x-4 gap-y-1 text-[12px] tracking-wider uppercase">
+            {NAV.map((item) => {
+              const [num, ...rest] = item.label.split(" ");
+              return (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    className="group border-b border-transparent py-1 font-sans text-[#e4ebf0] transition-colors hover:border-b-[#EF5350] hover:text-[#ffb3ae] focus-visible:text-[#ffb3ae]"
+                  >
+                    <span className="font-mono text-[#ffb3ae]">{num}</span> {rest.join(" ")}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
+
         </nav>
       </header>
 
