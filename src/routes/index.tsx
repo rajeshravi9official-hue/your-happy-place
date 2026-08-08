@@ -85,7 +85,7 @@ function SectionShell({
 }
 
 function Card({ children }: { children: React.ReactNode }) {
-  return <div className="paper-card p-5 sm:p-7">{children}</div>;
+  return <div className="paper-card rounded-[8px] p-5 sm:p-7">{children}</div>;
 }
 
 function Th({ children }: { children: React.ReactNode }) {
@@ -240,28 +240,28 @@ function Playbook() {
               </p>
 
               <dl className="mt-5 grid gap-4 sm:grid-cols-2">
-                <div className="border-l-2 border-l-[#EF5350] pl-3">
+                <div className="rounded-[8px] border-l-4 border-l-[#EF5350] bg-[#1b252a] px-4 py-3">
                   <dt className="font-mono text-xs tracking-widest text-[#ffb3ae] uppercase">Gate</dt>
                   <dd className="mt-1 text-sm text-[#b8c4cc]">
                     Self service recovery form available. You submit the request yourself without
                     waiting for a support agent.
                   </dd>
                 </div>
-                <div className="border-l-2 border-l-[#EF5350] pl-3">
+                <div className="rounded-[8px] border-l-4 border-l-[#EF5350] bg-[#1b252a] px-4 py-3">
                   <dt className="font-mono text-xs tracking-widest text-[#ffb3ae] uppercase">MEXC</dt>
                   <dd className="mt-1 text-sm text-[#b8c4cc]">
                     Self service recovery form available. MEXC charges a processing fee for wrong
                     deposit returns.
                   </dd>
                 </div>
-                <div className="border-l-2 border-l-[#EF5350] pl-3">
+                <div className="rounded-[8px] border-l-4 border-l-[#EF5350] bg-[#1b252a] px-4 py-3">
                   <dt className="font-mono text-xs tracking-widest text-[#ffb3ae] uppercase">BYDFi</dt>
                   <dd className="mt-1 text-sm text-[#b8c4cc]">
                     No self service form. Recovery is handled through support, and you must supply
                     the transaction hash and your account ID.
                   </dd>
                 </div>
-                <div className="border-l-2 border-l-[#EF5350] pl-3">
+                <div className="rounded-[8px] border-l-4 border-l-[#EF5350] bg-[#1b252a] px-4 py-3">
                   <dt className="font-mono text-xs tracking-widest text-[#ffb3ae] uppercase">WhiteBIT</dt>
                   <dd className="mt-1 text-sm text-[#b8c4cc]">
                     Weakest documented process of the four. No dedicated recovery form, and WhiteBIT
