@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 
 const LOGO = "/task16logo.png";
 const PDF =
-  "https://raw.githubusercontent.com/0xDarkSeidBull/dao-redbelly/main/task16-rbnt-recovery-playbook/Unstick_Your_RBNT_Recovery_Playbook.pdf";
+  "https://raw.githubusercontent.com/0xDarkSeidBull/dao-redbelly/main/task16-rbnt-recovery-playbook/Unstick_Your_RBNT_Recovery_Playbook_BrandKit.pdf";
 const DOCX =
-  "https://raw.githubusercontent.com/0xDarkSeidBull/dao-redbelly/main/task16-rbnt-recovery-playbook/Unstick_Your_RBNT_Recovery_Playbook.docx";
+  "https://raw.githubusercontent.com/0xDarkSeidBull/dao-redbelly/main/task16-rbnt-recovery-playbook/Unstick_Your_RBNT_Recovery_Playbook_BrandKit.docx";
 // raw.githubusercontent serves PDFs as an attachment, which browsers download instead of
 // rendering. The inline frame uses a read only viewer so nothing ever auto-downloads.
 const PDF_VIEWER = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(PDF)}`;
@@ -51,7 +51,7 @@ function Stamp() {
 
 function Warning({ children }: { children: React.ReactNode }) {
   return (
-    <div className="paper-card border-l-4 border-l-[#b23a2f] p-4 text-sm leading-relaxed sm:p-5">
+    <div className="paper-card border-t-4 border-t-[#EF5350] p-4 text-base leading-[1.5] sm:p-5">
       {children}
     </div>
   );
@@ -71,11 +71,11 @@ function SectionShell({
   stamp?: boolean;
 }) {
   return (
-    <section id={id} className="scroll-mt-24 border-t border-border pt-10">
+    <section id={id} className="scroll-mt-24 border-t border-[#27323a] pt-10">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="font-mono text-xs tracking-[0.2em] text-primary">SECTION {index}</p>
-          <h2 className="mt-2 text-2xl leading-tight sm:text-3xl">{title}</h2>
+          <p className="font-mono text-xs tracking-[0.2em] text-[#ffb3ae]">SECTION {index}</p>
+          <h2 className="mt-2 text-[26px] leading-tight font-semibold tracking-[-0.01em] sm:text-[32px]">{title}</h2>
         </div>
         {stamp ? <Stamp /> : null}
       </div>
@@ -85,12 +85,12 @@ function SectionShell({
 }
 
 function Card({ children }: { children: React.ReactNode }) {
-  return <div className="paper-card p-5 sm:p-7">{children}</div>;
+  return <div className="paper-card rounded-[8px] p-5 sm:p-7">{children}</div>;
 }
 
 function Th({ children }: { children: React.ReactNode }) {
   return (
-    <th className="border border-[#d9d4c6] bg-[#ece8dc] px-3 py-2 text-left font-mono text-[11px] font-medium tracking-widest uppercase">
+    <th className="border border-[#27323a] bg-[#1b252a] text-[#93a4ae] px-3 py-2 text-left font-mono text-[11px] font-medium tracking-widest uppercase">
       {children}
     </th>
   );
@@ -107,9 +107,9 @@ function Td({
 }) {
   return (
     <td
-      className={`border border-[#d9d4c6] px-3 py-2 align-top text-sm ${
+      className={`border border-[#27323a] px-3 py-2 align-top text-sm ${
         mono ? "font-mono text-[12px] break-all" : ""
-      } ${danger ? "text-[#b23a2f] font-medium" : ""}`}
+      } ${danger ? "text-[#ffb3ae] font-medium" : ""}`}
     >
       {children}
     </td>
@@ -118,10 +118,10 @@ function Td({
 
 function Step({ n, title, children }: { n: string; title: string; children: React.ReactNode }) {
   return (
-    <div className="border-t border-[#d9d4c6] pt-4 first:border-t-0 first:pt-0">
-      <h3 className="font-mono text-xs tracking-[0.18em] text-[#b23a2f] uppercase">Step {n}</h3>
+    <div className="border-t border-[#27323a] pt-4 first:border-t-0 first:pt-0">
+      <h3 className="font-mono text-xs tracking-[0.18em] text-[#ffb3ae] uppercase">Step {n}</h3>
       <p className="mt-1 font-display text-lg">{title}</p>
-      <div className="mt-2 space-y-2 text-sm leading-relaxed text-[#3a4454]">{children}</div>
+      <div className="mt-2 space-y-2 text-base leading-[1.5] text-[#b8c4cc]">{children}</div>
     </div>
   );
 }
@@ -129,7 +129,7 @@ function Step({ n, title, children }: { n: string; title: string; children: Reac
 function Playbook() {
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-50 border-b border-border bg-[#0f1b2d]/95 backdrop-blur">
+      <header className="sticky top-0 z-50 border-b border-border bg-[#121b20]/95 backdrop-blur">
         <nav className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-3 sm:px-6 lg:flex-row lg:items-center lg:gap-6">
           <a href="#top" className="flex shrink-0 items-center self-start lg:self-center" aria-label="Back to top">
             <img
@@ -140,39 +140,43 @@ function Playbook() {
               className="block h-[108px] w-[108px] shrink-0 object-contain"
             />
           </a>
-          <ul className="flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
-            {NAV.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  className="border-b border-transparent py-1 transition-colors hover:border-b-primary hover:text-primary focus-visible:text-primary"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+          <ul className="flex flex-wrap gap-x-4 gap-y-1 text-[12px] tracking-wider uppercase">
+            {NAV.map((item) => {
+              const [num, ...rest] = item.label.split(" ");
+              return (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    className="group border-b border-transparent py-1 font-sans text-[#e4ebf0] transition-colors hover:border-b-[#EF5350] hover:text-[#ffb3ae] focus-visible:text-[#ffb3ae]"
+                  >
+                    <span className="font-mono text-[#ffb3ae]">{num}</span> {rest.join(" ")}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
+
         </nav>
       </header>
 
-      <main id="top" className="mx-auto max-w-5xl px-4 pb-20 sm:px-6">
+      <main id="top" className="mx-auto max-w-[1280px] px-4 pb-20 sm:px-6 lg:px-16">
         {/* HERO */}
         <section className="py-12 sm:py-16">
-          <p className="font-mono text-xs tracking-[0.25em] text-primary uppercase">
+          <p className="font-mono text-xs tracking-[0.25em] text-[#ffb3ae] uppercase">
             Redbelly DAO · Community Support Guide
           </p>
-          <h1 className="mt-4 text-4xl leading-[1.05] sm:text-6xl">Unstick Your RBNT</h1>
-          <p className="mt-3 font-display text-xl text-foreground/80 sm:text-2xl">
+          <h1 className="mt-4 text-[36px] leading-[1.05] font-bold tracking-[-0.02em] sm:text-[48px]">Unstick Your RBNT</h1>
+          <p className="mt-3 font-display text-[24px] font-semibold tracking-[-0.01em] text-[#b8c4cc] sm:text-[32px]">
             A Cross Chain Recovery Playbook
           </p>
-          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+          <p className="mt-5 max-w-2xl text-[18px] leading-[1.55] text-[#b8c4cc]">
             A community support guide for wrong network sends, stuck bridges, and thin liquidity
             swaps. Reflects live, independently verified data as of August 2026.
           </p>
 
           <div className="mt-8 max-w-2xl">
             <Warning>
-              <span className="font-mono text-[11px] tracking-widest text-[#b23a2f] uppercase">
+              <span className="font-mono text-[11px] tracking-widest text-[#ffb3ae] uppercase">
                 Warning
               </span>
               <p className="mt-1">
@@ -187,13 +191,13 @@ function Playbook() {
               href={PDF}
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-primary bg-primary px-5 py-3 font-mono text-xs tracking-widest text-primary-foreground uppercase transition-colors hover:bg-[#9c3128]"
+              className="rounded-[4px] border border-primary bg-primary px-5 py-3 font-mono text-xs tracking-widest text-white uppercase transition-colors hover:bg-[#d94a45]"
             >
               Read the full PDF
             </a>
             <a
               href={DOCX}
-              className="border border-foreground/30 px-5 py-3 font-mono text-xs tracking-widest text-foreground uppercase transition-colors hover:border-primary hover:text-primary"
+              className="rounded-[4px] border border-[#3a4650] px-5 py-3 font-mono text-xs tracking-widest text-[#e4ebf0] uppercase transition-colors hover:border-[#ffb3ae] hover:text-[#ffb3ae]"
             >
               Download DOCX (editable)
             </a>
@@ -202,17 +206,17 @@ function Playbook() {
 
         {/* INLINE PDF */}
         <section className="pb-14">
-          <p className="mb-3 font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
+          <p className="mb-3 font-mono text-[12px] font-bold tracking-[0.1em] text-[#93a4ae] uppercase">
             Full document, rendered inline
           </p>
           <iframe
             src={PDF_VIEWER}
             title="Unstick Your RBNT: A Cross Chain Recovery Playbook (PDF)"
-            className="h-[700px] w-full border border-border bg-[#f7f5ef] sm:h-[820px]"
+            className="h-[700px] w-full border border-border bg-[#1e2a31] sm:h-[820px]"
           />
         </section>
 
-        <div className="space-y-14">
+        <div className="space-y-16">
           {/* SECTION 1 */}
           <SectionShell id="before-you-bridge" index="01" title="Before You Bridge">
             <Warning>
@@ -226,8 +230,8 @@ function Playbook() {
             </Warning>
 
             <Card>
-              <h3 className="font-display text-xl">Where RBNT trades</h3>
-              <p className="mt-2 text-sm leading-relaxed text-[#3a4454]">
+              <h3 className="font-display text-[22px] font-semibold">Where RBNT trades</h3>
+              <p className="mt-2 text-base leading-[1.5] text-[#b8c4cc]">
                 RBNT trades on four exchanges: <span className="font-mono">Gate</span>,{" "}
                 <span className="font-mono">MEXC</span>,{" "}
                 <span className="font-mono">WhiteBIT</span>, and{" "}
@@ -236,30 +240,30 @@ function Playbook() {
               </p>
 
               <dl className="mt-5 grid gap-4 sm:grid-cols-2">
-                <div className="border-l-2 border-l-[#b23a2f] pl-3">
-                  <dt className="font-mono text-xs tracking-widest uppercase">Gate</dt>
-                  <dd className="mt-1 text-sm text-[#3a4454]">
+                <div className="rounded-[8px] border-l-4 border-l-[#EF5350] bg-[#1b252a] px-4 py-3">
+                  <dt className="font-mono text-xs tracking-widest text-[#ffb3ae] uppercase">Gate</dt>
+                  <dd className="mt-1 text-base text-[#b8c4cc]">
                     Self service recovery form available. You submit the request yourself without
                     waiting for a support agent.
                   </dd>
                 </div>
-                <div className="border-l-2 border-l-[#b23a2f] pl-3">
-                  <dt className="font-mono text-xs tracking-widest uppercase">MEXC</dt>
-                  <dd className="mt-1 text-sm text-[#3a4454]">
+                <div className="rounded-[8px] border-l-4 border-l-[#EF5350] bg-[#1b252a] px-4 py-3">
+                  <dt className="font-mono text-xs tracking-widest text-[#ffb3ae] uppercase">MEXC</dt>
+                  <dd className="mt-1 text-base text-[#b8c4cc]">
                     Self service recovery form available. MEXC charges a processing fee for wrong
                     deposit returns.
                   </dd>
                 </div>
-                <div className="border-l-2 border-l-[#b23a2f] pl-3">
-                  <dt className="font-mono text-xs tracking-widest uppercase">BYDFi</dt>
-                  <dd className="mt-1 text-sm text-[#3a4454]">
+                <div className="rounded-[8px] border-l-4 border-l-[#EF5350] bg-[#1b252a] px-4 py-3">
+                  <dt className="font-mono text-xs tracking-widest text-[#ffb3ae] uppercase">BYDFi</dt>
+                  <dd className="mt-1 text-base text-[#b8c4cc]">
                     No self service form. Recovery is handled through support, and you must supply
                     the transaction hash and your account ID.
                   </dd>
                 </div>
-                <div className="border-l-2 border-l-[#b23a2f] pl-3">
-                  <dt className="font-mono text-xs tracking-widest uppercase">WhiteBIT</dt>
-                  <dd className="mt-1 text-sm text-[#3a4454]">
+                <div className="rounded-[8px] border-l-4 border-l-[#EF5350] bg-[#1b252a] px-4 py-3">
+                  <dt className="font-mono text-xs tracking-widest text-[#ffb3ae] uppercase">WhiteBIT</dt>
+                  <dd className="mt-1 text-base text-[#b8c4cc]">
                     Weakest documented process of the four. No dedicated recovery form, and WhiteBIT
                     states that deposits made incorrectly may be irreversibly lost.
                   </dd>
@@ -268,8 +272,8 @@ function Playbook() {
             </Card>
 
             <Card>
-              <h3 className="font-display text-xl">Correct deposit procedure</h3>
-              <ol className="mt-3 list-decimal space-y-3 pl-5 text-sm leading-relaxed text-[#3a4454]">
+              <h3 className="font-display text-[22px] font-semibold">Correct deposit procedure</h3>
+              <ol className="mt-3 list-decimal space-y-3 pl-5 text-base leading-[1.5] text-[#b8c4cc]">
                 <li>
                   Open the deposit page on the exchange and select RBNT explicitly. Do not reuse an
                   address saved from a previous deposit of a different asset.
@@ -302,8 +306,8 @@ function Playbook() {
           {/* SECTION 2 */}
           <SectionShell id="reference-tables" index="02" title="Reference Tables" stamp>
             <Card>
-              <h3 className="font-display text-xl">Table A. Wrapped RBNT Contract Addresses</h3>
-              <p className="mt-2 text-sm text-[#3a4454]">
+              <h3 className="font-display text-[22px] font-semibold">Table A. Wrapped RBNT Contract Addresses</h3>
+              <p className="mt-2 text-base text-[#b8c4cc]">
                 Checked against Redbelly&apos;s own announcements and documentation.
               </p>
               <div className="mt-4 overflow-x-auto">
@@ -347,18 +351,18 @@ function Playbook() {
             </Card>
 
             <Card>
-              <h3 className="font-display text-xl">Table B. Current Swap Liquidity by Chain</h3>
-              <p className="mt-2 text-sm text-[#3a4454]">
+              <h3 className="font-display text-[22px] font-semibold">Table B. Current Swap Liquidity by Chain</h3>
+              <p className="mt-2 text-base text-[#b8c4cc]">
                 Checked live, August 2026. Price impact figures are quotes at the time of checking
                 and will move as pools change.
               </p>
 
               <div className="mt-6 space-y-7">
                 <div>
-                  <h4 className="font-mono text-xs tracking-[0.18em] text-[#b23a2f] uppercase">
+                  <h4 className="font-mono text-xs tracking-[0.18em] text-[#ffb3ae] uppercase">
                     Ethereum
                   </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-[#3a4454]">
+                  <p className="mt-2 text-base leading-[1.5] text-[#b8c4cc]">
                     The WRBNT/WETH pool holds roughly{" "}
                     <span className="font-mono">$33,000</span>. That is enough for modest swaps and
                     punishing for large ones, so size matters more than routing here.
@@ -386,10 +390,10 @@ function Playbook() {
                 </div>
 
                 <div>
-                  <h4 className="font-mono text-xs tracking-[0.18em] text-[#b23a2f] uppercase">
+                  <h4 className="font-mono text-xs tracking-[0.18em] text-[#ffb3ae] uppercase">
                     Solana
                   </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-[#3a4454]">
+                  <p className="mt-2 text-base leading-[1.5] text-[#b8c4cc]">
                     Solana liquidity is effectively unusable for meaningful swaps right now. A
                     10,000 WRBNT swap already returns an impact figure that makes execution
                     irrational rather than merely expensive.
@@ -415,10 +419,10 @@ function Playbook() {
                 </div>
 
                 <div>
-                  <h4 className="font-mono text-xs tracking-[0.18em] text-[#b23a2f] uppercase">
+                  <h4 className="font-mono text-xs tracking-[0.18em] text-[#ffb3ae] uppercase">
                     Base
                   </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-[#3a4454]">
+                  <p className="mt-2 text-base leading-[1.5] text-[#b8c4cc]">
                     Base currently shows lower price impact than Ethereum at matched sizes, despite
                     having no dedicated official liquidity announcement from Redbelly. Quotes also
                     diverge noticeably between aggregators, so check more than one before executing.
@@ -500,7 +504,7 @@ function Playbook() {
             title="Failure Mode 2. Quote Unavailable Bridging RBNT Back to Redbelly Network"
           >
             <Card>
-              <p className="text-sm leading-relaxed text-[#3a4454]">
+              <p className="text-base leading-[1.5] text-[#b8c4cc]">
                 Redbelly&apos;s own developer documentation names{" "}
                 <span className="font-mono">Lucid Labs Bridge</span> as the official route for
                 bridging RBNT back to Redbelly Network. It supports nine source chains. If your
@@ -510,7 +514,7 @@ function Playbook() {
             </Card>
 
             <Card>
-              <h3 className="font-display text-xl">Verified Bridge Routes</h3>
+              <h3 className="font-display text-[22px] font-semibold">Verified Bridge Routes</h3>
               <div className="mt-4 overflow-x-auto">
                 <table className="w-full min-w-[620px] border-collapse">
                   <thead>
@@ -586,7 +590,7 @@ function Playbook() {
                       <Td mono>14.21 S</Td>
                       <Td mono>About 93 min</Td>
                     </tr>
-                    <tr className="bg-[#f6e7e4]">
+                    <tr className="bg-[#1b252a]">
                       <Td danger>⚠ Solana</Td>
                       <Td mono danger>
                         RBNT
@@ -602,7 +606,7 @@ function Playbook() {
                   </tbody>
                 </table>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-[#3a4454]">
+              <p className="mt-4 text-base leading-[1.5] text-[#b8c4cc]">
                 Solana is the one confirmed unresolvable case. There is no supported route from
                 Solana back to Redbelly Network through the official bridge at the time of checking.
                 This will not resolve by retrying, by changing wallets, or by adjusting the amount.
@@ -610,8 +614,8 @@ function Playbook() {
             </Card>
 
             <Card>
-              <h3 className="font-display text-xl">What to do</h3>
-              <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-[#3a4454]">
+              <h3 className="font-display text-[22px] font-semibold">What to do</h3>
+              <ul className="mt-3 list-disc space-y-2 pl-5 text-base leading-[1.5] text-[#b8c4cc]">
                 <li>
                   Do not repeatedly retry. Repeated attempts cost gas and produce the same result.
                 </li>
@@ -638,12 +642,12 @@ function Playbook() {
             title="Failure Mode 3. Stablecoins Stranded on Ethereum Mainnet"
           >
             <Card>
-              <p className="text-sm leading-relaxed text-[#3a4454]">
+              <p className="text-base leading-[1.5] text-[#b8c4cc]">
                 <span className="font-mono">reddex</span> is Redbelly&apos;s official interface for
                 this route. Use it rather than a third party front end, and treat any other
                 interface offering the same transfer as unverified.
               </p>
-              <h3 className="mt-6 font-display text-xl">Route and Fee</h3>
+              <h3 className="mt-6 font-display text-[22px] font-semibold">Route and Fee</h3>
               <div className="mt-3 overflow-x-auto">
                 <table className="w-full min-w-[420px] border-collapse">
                   <thead>
@@ -723,15 +727,15 @@ function Playbook() {
             title="Failure Mode 4. Native RBNT Sent to a CEX Deposit Address by Mistake"
           >
             <Card>
-              <p className="text-sm leading-relaxed text-[#3a4454]">
+              <p className="text-base leading-[1.5] text-[#b8c4cc]">
                 Recovery is possible here, but it is never guaranteed on any of the four exchanges.
                 Each one runs a manual process with its own rules, fees, and limits, and each
                 reserves the right to decline. Act quickly and keep your evidence tidy, because a
                 complete first message is the single biggest factor you control.
               </p>
 
-              <h3 className="mt-6 font-display text-xl">Evidence to collect first</h3>
-              <ul className="mt-3 space-y-2 text-sm text-[#3a4454]">
+              <h3 className="mt-6 font-display text-[22px] font-semibold">Evidence to collect first</h3>
+              <ul className="mt-3 space-y-2 text-base text-[#b8c4cc]">
                 {[
                   "Transaction hash of the deposit",
                   "The exact deposit address you sent to",
@@ -740,7 +744,7 @@ function Playbook() {
                   "Your account identifier on the exchange (UID or registered email)",
                 ].map((item) => (
                   <li key={item} className="flex gap-3">
-                    <span aria-hidden="true" className="font-mono text-[#b23a2f]">
+                    <span aria-hidden="true" className="font-mono text-[#ffb3ae]">
                       ☐
                     </span>
                     <span>{item}</span>
@@ -751,30 +755,30 @@ function Playbook() {
 
             <div className="grid gap-4 sm:grid-cols-2">
               <Card>
-                <h3 className="font-mono text-xs tracking-widest uppercase">Gate</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#3a4454]">
+                <h3 className="font-mono text-xs tracking-widest text-[#ffb3ae] uppercase">Gate</h3>
+                <p className="mt-2 text-base leading-[1.5] text-[#b8c4cc]">
                   Self service &quot;Deposit Not Received, Recovery Request&quot; tool. You submit
                   the request yourself with the transaction details.
                 </p>
               </Card>
               <Card>
-                <h3 className="font-mono text-xs tracking-widest uppercase">MEXC</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#3a4454]">
+                <h3 className="font-mono text-xs tracking-widest text-[#ffb3ae] uppercase">MEXC</h3>
+                <p className="mt-2 text-base leading-[1.5] text-[#b8c4cc]">
                   Dedicated &quot;Wrong Deposit Return Application&quot;. A processing fee applies,
                   and funds are returned to the original sending address, not credited to your MEXC
                   balance.
                 </p>
               </Card>
               <Card>
-                <h3 className="font-mono text-xs tracking-widest uppercase">BYDFi</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#3a4454]">
+                <h3 className="font-mono text-xs tracking-widest text-[#ffb3ae] uppercase">BYDFi</h3>
+                <p className="mt-2 text-base leading-[1.5] text-[#b8c4cc]">
                   No self service form. Contact Customer Support directly with the transaction ID and
                   your UID.
                 </p>
               </Card>
               <Card>
-                <h3 className="font-mono text-xs tracking-widest uppercase">WhiteBIT</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#3a4454]">
+                <h3 className="font-mono text-xs tracking-widest text-[#ffb3ae] uppercase">WhiteBIT</h3>
+                <p className="mt-2 text-base leading-[1.5] text-[#b8c4cc]">
                   Weakest documented process of the four. General support ticket only, with no
                   dedicated recovery tool.
                 </p>
@@ -782,7 +786,7 @@ function Playbook() {
             </div>
 
             <Warning>
-              <span className="font-mono text-[11px] tracking-widest text-[#b23a2f] uppercase">
+              <span className="font-mono text-[11px] tracking-widest text-[#ffb3ae] uppercase">
                 Warning
               </span>
               <p className="mt-1">
@@ -795,12 +799,12 @@ function Playbook() {
         </div>
       </main>
 
-      <footer className="border-t border-border py-10">
+      <footer className="border-t border-[#27323a] bg-[#0a1216] py-10">
         <div className="mx-auto max-w-3xl px-4 text-center">
-          <p className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
+          <p className="font-mono text-[12px] font-bold tracking-[0.1em] text-[#93a4ae] uppercase">
             Research deliverable · Redbelly DAO
           </p>
-          <p className="mt-3 text-sm text-muted-foreground">
+          <p className="mt-3 text-base text-[#b8c4cc]">
             Built with{" "}
             <span aria-label="love" className="text-primary">
               ♥
@@ -815,7 +819,7 @@ function Playbook() {
               0xDarkSeidBull
             </a>
           </p>
-          <p className="mt-5 text-xs leading-relaxed text-muted-foreground/80">
+          <p className="mt-5 text-[13px] leading-relaxed text-[#93a4ae] italic">
             This guide reflects live, independently verified data as of August 2026. Liquidity, fees,
             and routing conditions change frequently, always confirm current quotes before acting on
             amounts that matter to you.
