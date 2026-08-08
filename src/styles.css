@@ -37,8 +37,8 @@
   --color-paper-line: var(--paper-line);
   --color-stamp: var(--stamp);
   --color-paper-muted: var(--paper-muted);
-  --font-display: "Playfair Display", Georgia, serif;
-  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --font-display: "Be Vietnam Pro", system-ui, sans-serif;
+  --font-sans: "Be Vietnam Pro", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
@@ -51,25 +51,25 @@
   --paper-muted: oklch(0.47 0.02 258);
   --stamp: oklch(0.5 0.15 27);
 
-  --background: #0f1b2d;
-  --foreground: #f7f5ef;
-  --card: #f7f5ef;
-  --card-foreground: #1b2434;
-  --popover: #f7f5ef;
-  --popover-foreground: #1b2434;
-  --primary: #b23a2f;
-  --primary-foreground: #f7f5ef;
-  --secondary: #16253a;
-  --secondary-foreground: #f7f5ef;
-  --muted: #16253a;
-  --muted-foreground: #9fb0c6;
-  --accent: #b23a2f;
-  --accent-foreground: #f7f5ef;
-  --destructive: #b23a2f;
-  --destructive-foreground: #f7f5ef;
-  --border: #24344b;
-  --input: #24344b;
-  --ring: #b23a2f;
+  --background: #0f181d;
+  --foreground: #e4ebf0;
+  --card: #1e2a31;
+  --card-foreground: #e4ebf0;
+  --popover: #1e2a31;
+  --popover-foreground: #e4ebf0;
+  --primary: #ef5350;
+  --primary-foreground: #ffffff;
+  --secondary: #121b20;
+  --secondary-foreground: #e4ebf0;
+  --muted: #1b252a;
+  --muted-foreground: #93a4ae;
+  --accent: #ef5350;
+  --accent-foreground: #ffffff;
+  --destructive: #ef5350;
+  --destructive-foreground: #ffffff;
+  --border: #3a4650;
+  --input: #3a4650;
+  --ring: #ef5350;
 }
 
 @layer base {
@@ -78,9 +78,10 @@
   }
 
   body {
-    background-color: #0f1b2d;
+    background-color: #0f181d;
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    line-height: 1.5;
   }
 
   h1,
@@ -91,7 +92,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid #b23a2f;
+    outline: 2px solid #ef5350;
     outline-offset: 2px;
   }
 
@@ -102,9 +103,9 @@
 }
 
 @utility paper-card {
-  background-color: #f7f5ef;
-  color: #1b2434;
-  border: 1px solid #d9d4c6;
+  background-color: #1e2a31;
+  color: #e4ebf0;
+  border: 1px solid #3a4650;
 }
 
 @utility stamp {
@@ -114,8 +115,8 @@
   width: 4.25rem;
   height: 4.25rem;
   border-radius: 9999px;
-  border: 2px solid #b23a2f;
-  color: #b23a2f;
+  border: 2px solid #ef5350;
+  color: #ffb3ae;
   font-family: var(--font-mono);
   font-size: 0.6rem;
   letter-spacing: 0.12em;
