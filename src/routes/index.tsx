@@ -193,13 +193,13 @@ function Playbook() {
               href={PDF_INLINE}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-[4px] border border-primary bg-primary px-5 py-3 font-mono text-xs tracking-widest text-white uppercase transition-colors hover:bg-[#d94a45]"
+              className="rounded-[4px] border border-primary bg-primary px-5 py-3 font-sans text-sm font-semibold text-white transition-colors hover:bg-[#d94a45]"
             >
-              Read the full PDF
+              Read PDF
             </a>
             <a
               href={DOCX}
-              className="rounded-[4px] border border-[#3a4650] px-5 py-3 font-mono text-xs tracking-widest text-[#e4ebf0] uppercase transition-colors hover:border-[#ffb3ae] hover:text-[#ffb3ae]"
+              className="rounded-[4px] border border-[#3a4650] px-5 py-3 font-sans text-sm font-semibold tracking-widest text-[#e4ebf0] uppercase transition-colors hover:border-[#ffb3ae] hover:text-[#ffb3ae]"
             >
               Download DOCX (editable)
             </a>
