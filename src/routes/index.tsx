@@ -6,7 +6,9 @@ const PDF =
 const DOCX =
   "https://raw.githubusercontent.com/0xDarkSeidBull/dao-redbelly/main/task16-rbnt-recovery-playbook/Unstick_Your_RBNT_Recovery_Playbook_BrandKit.docx";
 // raw.githubusercontent serves PDFs as an attachment, which browsers download instead of
-// rendering. The inline frame uses a read only viewer so nothing ever auto-downloads.
+// rendering. The jsDelivr mirror of the same file serves it inline for reading in a new tab.
+const PDF_INLINE =
+  "https://cdn.jsdelivr.net/gh/0xDarkSeidBull/dao-redbelly@main/task16-rbnt-recovery-playbook/Unstick_Your_RBNT_Recovery_Playbook_BrandKit.pdf";
 const PDF_VIEWER = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(PDF)}`;
 
 
@@ -188,7 +190,7 @@ function Playbook() {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <a
-              href={PDF}
+              href={PDF_INLINE}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-[4px] border border-primary bg-primary px-5 py-3 font-mono text-xs tracking-widest text-white uppercase transition-colors hover:bg-[#d94a45]"
