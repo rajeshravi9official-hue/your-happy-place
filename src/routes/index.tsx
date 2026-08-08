@@ -190,7 +190,7 @@ function Playbook() {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <a
-              href={PDF}
+              href={PDF_INLINE}
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-[4px] border border-primary bg-primary px-5 py-3 font-mono text-xs tracking-widest text-white uppercase transition-colors hover:bg-[#d94a45]"
