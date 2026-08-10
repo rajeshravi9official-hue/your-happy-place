@@ -232,6 +232,8 @@ const EXCHANGES = [
   },
 ];
 
+const EX_LINK = Object.fromEntries(EXCHANGES.map((e) => [e.name, e.href])) as Record<string, string>;
+
 const CONTRACT_ROWS: {
   chain: string;
   address: string;
@@ -681,20 +683,20 @@ function Playbook() {
                     <Step n={2} title="Use the exchange's own recovery path">
                       <ul className="list-disc space-y-1 pl-5">
                         <li>
-                          <InlineLink href={EXCHANGES[0].href}>Gate</InlineLink>: self service
+                          <InlineLink href={EX_LINK.GATE}>Gate</InlineLink>: self service
                           recovery request tool.
                         </li>
                         <li>
-                          <InlineLink href={EXCHANGES[1].href}>MEXC</InlineLink>: wrong deposit
+                          <InlineLink href={EX_LINK.MEXC}>MEXC</InlineLink>: wrong deposit
                           return application, processing fee applies, funds return to the sending
                           address.
                         </li>
                         <li>
-                          <InlineLink href={EXCHANGES[2].href}>BYDFi</InlineLink>: support ticket
+                          <InlineLink href={EX_LINK.BYDFI}>BYDFi</InlineLink>: support ticket
                           with transaction hash and UID.
                         </li>
                         <li>
-                          <InlineLink href={EXCHANGES[3].href}>WhiteBIT</InlineLink>: general support
+                          <InlineLink href={EX_LINK.WHITEBIT}>WhiteBIT</InlineLink>: general support
                           ticket only, no dedicated tool.
                         </li>
                       </ul>
