@@ -1,35 +1,28 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { AlertTriangle, Check, Copy, ExternalLink, FileText, FileCode2 } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { AlertTriangle, Check, Copy, ExternalLink, Heart } from "lucide-react";
 
 const LOGO = "/dao-logo-on-dark.png";
 const REPO = "https://github.com/0xDarkSeidBull/dao-redbelly";
 const PDF =
-  "https://github.com/0xDarkSeidBull/dao-redbelly/blob/main/task16-rbnt-recovery-playbook/unstick-your-rbnt-recovery-playbook.pdf";
-const MD =
-  "https://github.com/0xDarkSeidBull/dao-redbelly/blob/main/task16-rbnt-recovery-playbook/unstick-your-rbnt-recovery-playbook.md";
+  "https://cdn.jsdelivr.net/gh/0xDarkSeidBull/dao-redbelly@main/task16-rbnt-recovery-playbook/Unstick_Your_RBNT_Recovery_Playbook_BrandKit.pdf";
+const DOCX =
+  "https://raw.githubusercontent.com/0xDarkSeidBull/dao-redbelly/main/task16-rbnt-recovery-playbook/Unstick_Your_RBNT_Recovery_Playbook_BrandKit.docx";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Unstick Your RBNT: Cross-Chain Recovery Playbook" },
+      { title: "Unstick Your RBNT: Cross Chain Recovery Playbook" },
       {
         name: "description",
         content:
-          "Recovery guide for stuck RBNT across Ethereum, Base, Solana and Redbelly Network: verified contracts, official bridges, exchange recovery forms and failure modes.",
+          "Recovery guide for stuck RBNT across Ethereum, Base, Solana and Redbelly Network: verified contracts, bridge routes, liquidity data and exchange recovery paths.",
       },
-      { property: "og:title", content: "Unstick Your RBNT: Cross-Chain Recovery Playbook" },
+      { property: "og:title", content: "Unstick Your RBNT: Cross Chain Recovery Playbook" },
       {
         property: "og:description",
         content:
-          "TASK-16, Redbelly DAO Task Board. Verified contract addresses, live swap links, official bridges and step-by-step fixes for stuck RBNT.",
+          "Redbelly DAO community support guide. Verified contract addresses, swap liquidity, bridge routes and step by step fixes for stuck RBNT.",
       },
     ],
   }),
@@ -37,94 +30,128 @@ export const Route = createFileRoute("/")({
 });
 
 const NAV = [
-  { id: "before-you-bridge", label: "Before You Bridge" },
-  { id: "contracts", label: "Contracts" },
-  { id: "bridges", label: "Bridges" },
-  { id: "failure-modes", label: "Failure Modes" },
+  { id: "s1", n: "1", label: "Before You Bridge" },
+  { id: "s2", n: "2", label: "Reference Tables" },
+  { id: "s3", n: "3", label: "Zero Value Swap" },
+  { id: "s4", n: "4", label: "Quote Unavailable" },
+  { id: "s5", n: "5", label: "Stranded Stablecoins" },
+  { id: "s6", n: "6", label: "Wrong CEX Deposit" },
 ];
 
 /* ---------- primitives ---------- */
 
-function Mono({ children }: { children: React.ReactNode }) {
-  return <span className="font-mono">{children}</span>;
-}
-
-function Card({
-  children,
-  accent,
-  className = "",
-}: {
-  children: React.ReactNode;
-  accent?: boolean;
-  className?: string;
-}) {
+function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <div
-      className={`rounded-xl border border-border bg-card p-6 sm:p-7 ${
-        accent ? "border-l-4 border-l-primary" : ""
-      } ${className}`}
+      className={`rounded-[8px] border border-[#3a4650] bg-[#1e2a31] p-6 sm:p-8 ${className}`}
     >
       {children}
     </div>
   );
 }
 
-function OutLink({
-  href,
+function Warning({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="rounded-[8px] border border-[#3a4650] border-t-4 border-t-[#EF5350] bg-[#1e2a31] p-6 sm:p-7">
+      <p className="font-mono text-[12px] font-bold tracking-[0.1em] text-[#ffb3ae] uppercase">
+        Warning
+      </p>
+      <div className="mt-3 text-[16px] leading-[1.5] text-[#b8c4cc]">{children}</div>
+    </div>
+  );
+}
+
+function Section({
+  id,
+  n,
+  title,
   children,
-  variant = "ghost",
 }: {
-  href: string;
+  id: string;
+  n: string;
+  title: string;
   children: React.ReactNode;
-  variant?: "solid" | "ghost";
 }) {
-  const base =
-    "inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-colors";
+  return (
+    <section id={id} className="scroll-mt-28">
+      <p className="font-mono text-[12px] font-bold tracking-[0.1em] text-[#ffb3ae] uppercase">
+        Section {n}
+      </p>
+      <h2 className="mt-3 text-[26px] leading-[1.15] font-semibold tracking-[-0.01em] text-[#e4ebf0] sm:text-[32px]">
+        {title}
+      </h2>
+      <div className="mt-8 space-y-8">{children}</div>
+    </section>
+  );
+}
+
+function Sub({ children }: { children: React.ReactNode }) {
+  return (
+    <h3 className="text-[20px] leading-[1.25] font-semibold tracking-[-0.01em] text-[#e4ebf0] sm:text-[22px]">
+      {children}
+    </h3>
+  );
+}
+
+function P({ children, lead = false }: { children: React.ReactNode; lead?: boolean }) {
+  return (
+    <p
+      className={
+        lead
+          ? "text-[18px] leading-[1.55] text-[#b8c4cc]"
+          : "text-[16px] leading-[1.5] text-[#b8c4cc]"
+      }
+    >
+      {children}
+    </p>
+  );
+}
+
+function A({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={
-        variant === "solid"
-          ? `${base} bg-primary text-primary-foreground hover:bg-primary/85`
-          : `${base} border border-border text-foreground hover:border-primary hover:text-primary`
-      }
+      className="text-[#ffb3ae] underline underline-offset-4 hover:opacity-80"
     >
       {children}
-      <ExternalLink className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
     </a>
   );
 }
 
-function SectionShell({
-  id,
-  label,
-  title,
-  children,
-}: {
-  id: string;
-  label: string;
-  title: string;
-  children: React.ReactNode;
-}) {
+function Th({ children }: { children: React.ReactNode }) {
   return (
-    <section id={id} className="scroll-mt-28 border-t border-border pt-12">
-      <p className="font-mono text-xs tracking-[0.22em] text-primary uppercase">{label}</p>
-      <h2 className="mt-2 text-[28px] leading-tight font-bold tracking-[-0.01em] text-primary sm:text-[34px]">
-        {title}
-      </h2>
-      <div className="mt-7 space-y-6">{children}</div>
-    </section>
+    <th className="bg-[#1b252a] px-4 py-3 text-left font-sans text-[12px] font-bold tracking-[0.1em] text-[#93a4ae] uppercase">
+      {children}
+    </th>
+  );
+}
+
+function Td({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <td
+      className={`border-t border-[#27323a] px-4 py-3 align-top text-[16px] text-[#b8c4cc] ${className}`}
+    >
+      {children}
+    </td>
+  );
+}
+
+function TablePanel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="overflow-x-auto rounded-[8px] border border-[#3a4650] bg-[#1e2a31]">
+      <table className="w-full min-w-[560px] border-collapse">{children}</table>
+    </div>
   );
 }
 
 function CopyAddress({ value }: { value: string }) {
   const [copied, setCopied] = useState(false);
-  const short = value.length > 22 ? `${value.slice(0, 10)}…${value.slice(-8)}` : value;
+  const short = value.length > 22 ? `${value.slice(0, 10)}...${value.slice(-8)}` : value;
   return (
     <span className="inline-flex items-center gap-2">
-      <span className="font-mono text-[12px]" title={value}>
+      <span className="font-mono text-[14px] text-[#e4ebf0]" title={value}>
         {short}
       </span>
       <button
@@ -135,70 +162,26 @@ function CopyAddress({ value }: { value: string }) {
           setCopied(true);
           setTimeout(() => setCopied(false), 1500);
         }}
-        className="rounded p-1 text-muted-foreground transition-colors hover:text-primary"
+        className="rounded p-1 text-[#93a4ae] transition-colors hover:text-[#ffb3ae]"
       >
         {copied ? (
-          <Check className="h-3.5 w-3.5" aria-hidden="true" />
+          <Check className="h-4 w-4" aria-hidden="true" />
         ) : (
-          <Copy className="h-3.5 w-3.5" aria-hidden="true" />
+          <Copy className="h-4 w-4" aria-hidden="true" />
         )}
       </button>
     </span>
   );
 }
 
-function Badge({ level }: { level: "High" | "Medium" | "N/A" }) {
-  const styles: Record<string, string> = {
-    High: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
-    Medium: "bg-amber-500/15 text-amber-400 border-amber-500/30",
-    "N/A": "bg-primary/15 text-primary border-primary/40",
-  };
-  return (
-    <span
-      className={`inline-block rounded-md border px-2 py-0.5 font-mono text-[11px] tracking-wider uppercase ${styles[level]}`}
-    >
-      {level}
-    </span>
-  );
-}
-
-function Th({ children }: { children: React.ReactNode }) {
-  return (
-    <th className="border-b border-border px-3 py-2 text-left font-mono text-[11px] font-medium tracking-widest text-muted-foreground uppercase">
-      {children}
-    </th>
-  );
-}
-
-function Td({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return (
-    <td className={`border-b border-border px-3 py-3 align-top text-sm ${className}`}>{children}</td>
-  );
-}
-
 function Step({ n, title, children }: { n: number; title: string; children: React.ReactNode }) {
   return (
-    <li className="border-t border-border pt-4 first:border-t-0 first:pt-0">
-      <p className="font-semibold text-foreground">
-        <span className="font-mono text-primary">{n}.</span> {title}
+    <li className="border-t border-[#27323a] pt-5 first:border-t-0 first:pt-0">
+      <p className="text-[18px] font-semibold text-[#e4ebf0]">
+        <span className="font-mono text-[#ffb3ae]">{n}.</span> {title}
       </p>
-      <div className="mt-2 space-y-2 text-[15px] leading-relaxed text-muted-foreground">
-        {children}
-      </div>
+      <div className="mt-2 space-y-3 text-[16px] leading-[1.5] text-[#b8c4cc]">{children}</div>
     </li>
-  );
-}
-
-function InlineLink({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-primary underline underline-offset-4 hover:opacity-80"
-    >
-      {children}
-    </a>
   );
 }
 
@@ -209,42 +192,42 @@ const BASE = "0x020940df9F5E77338a094D55b5B5914122a804A5";
 const SOL = "2GBVt2ENvbHepuJMWYTPkkfpWUabAhsaXToYw8UphxS3";
 const RBN = "0x6ed1F491e2d31536D6561f6bdB2AdC8F092a6076";
 
+const GATE =
+  "https://www.gate.com/help/guide/deposit_withdrawa/26321/how-to-submit-a-retri_-application";
+const MEXC =
+  "https://www.mexc.com/support/article/what-is-the-uncredited-deposit-return-application-17827791526274";
+const BYDFI =
+  "https://support.bydfi.com/hc/en-us/articles/5698786544143-Deposits-Haven-t-Been-Credited-to-Your-BYDFi-Account";
+const WHITEBIT = "https://help.whitebit.com/hc/en/requests/new";
+
 const EXCHANGES = [
   {
     name: "GATE",
     body: "Self service recovery form available. You submit the request yourself without waiting for a support agent.",
-    href: "https://www.gate.com/help/guide/deposit_withdrawa/26321/how-to-submit-a-retri_-application",
+    href: GATE,
   },
   {
     name: "MEXC",
     body: "Self service recovery form available. MEXC charges a processing fee for wrong deposit returns.",
-    href: "https://www.mexc.com/support/article/what-is-the-uncredited-deposit-return-application-17827791526274",
+    href: MEXC,
   },
   {
     name: "BYDFI",
     body: "No self service form. Recovery is handled through support, and you must supply the transaction hash and your account ID.",
-    href: "https://support.bydfi.com/hc/en-us/articles/5698786544143-Deposits-Haven-t-Been-Credited-to-Your-BYDFi-Account",
+    href: BYDFI,
   },
   {
     name: "WHITEBIT",
     body: "Weakest documented process of the four. No dedicated recovery form, and WhiteBIT states that deposits made incorrectly may be irreversibly lost.",
-    href: "https://help.whitebit.com/hc/en/requests/new",
+    href: WHITEBIT,
   },
 ];
-
-const EX_LINK = {
-  GATE: EXCHANGES[0]!.href,
-  MEXC: EXCHANGES[1]!.href,
-  BYDFI: EXCHANGES[2]!.href,
-  WHITEBIT: EXCHANGES[3]!.href,
-};
 
 const CONTRACT_ROWS: {
   chain: string;
   address: string;
-  level: "High" | "Medium" | "N/A";
+  level: "High" | "Medium" | "Absent";
   source: string;
-  absent?: boolean;
 }[] = [
   { chain: "Ethereum", address: ETH, level: "High", source: "Redbelly's own X post" },
   { chain: "Solana", address: SOL, level: "High", source: "Redbelly's own X post" },
@@ -258,84 +241,85 @@ const CONTRACT_ROWS: {
   {
     chain: "BNB Chain",
     address: "No official token exists",
-    level: "N/A",
+    level: "Absent",
     source: "Confirmed absent, do not trust any RBNT token found here",
-    absent: true,
   },
 ];
 
-const SWAPS: {
-  chain: string;
-  contract: string;
-  dexes: { name: string; href: string }[];
-  impact: string[];
-  warn?: string;
-}[] = [
+const LIQUIDITY: { chain: string; intro: string; rows: [string, string][]; flag?: string }[] = [
   {
     chain: "Ethereum",
-    contract: ETH,
-    dexes: [
-      { name: "1inch", href: `https://1inch.com/swap?src=1:${ETH}&dst=1:USDT` },
-      {
-        name: "OKX DEX",
-        href: `https://web3.okx.com/dex-swap?chain=ethereum,ethereum&token=${ETH},0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48`,
-      },
-      {
-        name: "Bitget",
-        href: "https://web3.bitget.com/en/swap/eth/0xb45fFB51984d626Ee758b336C61Cf20990c6bF13",
-      },
+    intro:
+      "Ethereum holds the deepest pool of the three. Mid size swaps clear at a workable cost, while very large orders still move the price sharply.",
+    rows: [
+      ["100,000 WRBNT", "1.51% to 2.87%"],
+      ["1,000,000 WRBNT", "13% to 14%"],
     ],
-    impact: ["100,000 WRBNT = 1.51% to 2.87%", "1,000,000 WRBNT = 13% to 14%"],
-  },
-  {
-    chain: "Base",
-    contract: BASE,
-    dexes: [
-      {
-        name: "KyberSwap",
-        href: "https://kyberswap.com/swap/base/0x020940df9f5e77338a094d55b5b5914122a804a5-to-usdc",
-      },
-      {
-        name: "1inch",
-        href: "https://1inch.com/swap?src=8453:0x020940df9f5e77338a094d55b5b5914122a804a5&dst=8453:USDC",
-      },
-      {
-        name: "OKX DEX",
-        href: "https://web3.okx.com/dex-swap?chain=base,base&token=0x020940df9f5e77338a094d55b5b5914122a804a5,0xd9aaec86b65d86f6a7b5b1b0c42ffa531710b6ca",
-      },
-      {
-        name: "Bitget",
-        href: "https://web3.bitget.com/en/swap/base/0x020940df9F5E77338a094D55b5B5914122a804A5",
-      },
-    ],
-    impact: ["1,000,000 RBNT = 7.88% to 8.04%", "100,000 RBNT = 13.36%"],
   },
   {
     chain: "Solana",
-    contract: SOL,
-    dexes: [
-      {
-        name: "Raydium",
-        href: `https://raydium.io/swap/?inputMint=${SOL}&outputMint=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v`,
-      },
-    ],
-    impact: ["10,000 WRBNT = 86.77%"],
-    warn: "Effectively unusable at this size.",
+    intro:
+      "Solana liquidity is extremely thin. Even a modest order size returns an impact figure that makes the swap uneconomic.",
+    rows: [["10,000 WRBNT", "86.77%"]],
+    flag: "86.77%",
   },
   {
-    chain: "Redbelly Network (native chain)",
-    contract: RBN,
-    dexes: [
-      {
-        name: "reddex, RBNT to USDC.e",
-        href: "https://www.reddex.io/swap?chain=redbelly&inputCurrency=NATIVE&outputCurrency=0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06",
-      },
-      {
-        name: "reddex, WRBNT to USDC.e",
-        href: `https://www.reddex.io/swap?chain=redbelly&inputCurrency=${RBN}&outputCurrency=0x8201c02d4AB2214471E8C3AD6475C8b0CD9F2D06`,
-      },
+    chain: "Base",
+    intro:
+      "Base sits between the two. Larger orders can price better than smaller ones here because routing depends on which pools are available at the time.",
+    rows: [
+      ["1,000,000 RBNT", "7.88% to 8.04%"],
+      ["100,000 RBNT", "13.36%"],
     ],
-    impact: [],
+  },
+];
+
+const BRIDGE_ROUTES: {
+  source: string;
+  asset: string;
+  route: string;
+  fee: string;
+  time: string;
+  warn?: boolean;
+}[] = [
+  { source: "Ethereum", asset: "WRBNT", route: "Lucid Labs Bridge", fee: "1%", time: "Minutes" },
+  { source: "Base", asset: "RBNT", route: "Lucid Labs Bridge", fee: "1%", time: "Minutes" },
+  { source: "Arbitrum", asset: "WRBNT", route: "Lucid Labs Bridge", fee: "1%", time: "Minutes" },
+  { source: "Optimism", asset: "WRBNT", route: "Lucid Labs Bridge", fee: "1%", time: "Minutes" },
+  { source: "BSC", asset: "WRBNT", route: "Lucid Labs Bridge", fee: "1%", time: "Minutes" },
+  { source: "Polygon", asset: "WRBNT", route: "Lucid Labs Bridge", fee: "1%", time: "Minutes" },
+  { source: "Avalanche", asset: "WRBNT", route: "Lucid Labs Bridge", fee: "1%", time: "Minutes" },
+  { source: "Sonic", asset: "WRBNT", route: "Lucid Labs Bridge", fee: "1%", time: "Minutes" },
+  {
+    source: "Solana",
+    asset: "WRBNT",
+    route: "No route available",
+    fee: "n/a",
+    time: "n/a",
+    warn: true,
+  },
+];
+
+const CEX_WRITEUPS = [
+  {
+    name: "GATE",
+    href: GATE,
+    body: "Gate runs a self service retrieval application. You submit the transaction hash, the deposit address and your account details yourself, and the request enters the queue without a support agent needing to open it for you. This is the strongest of the four processes.",
+  },
+  {
+    name: "MEXC",
+    href: MEXC,
+    body: "MEXC operates an uncredited deposit return application. A processing fee applies, and returned funds go back to the address that sent them, not to your exchange balance. Submit the application once and wait for the result rather than filing duplicates.",
+  },
+  {
+    name: "BYDFI",
+    href: BYDFI,
+    body: "BYDFi has no self service form. Recovery runs through a support ticket, and the ticket is only actionable if you include the transaction hash and your account UID. Expect a slower turnaround than the self service exchanges.",
+  },
+  {
+    name: "WHITEBIT",
+    href: WHITEBIT,
+    body: "WhiteBIT offers only a general support request. There is no dedicated recovery tool, and WhiteBIT states that incorrectly made deposits may be irreversibly lost. Submit a ticket with full evidence, but treat the outcome as uncertain.",
   },
 ];
 
@@ -343,20 +327,26 @@ const SWAPS: {
 
 function Playbook() {
   return (
-    <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
-        <nav className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3 sm:px-6 lg:flex lg:justify-between">
-          <a href="#top" className="flex min-w-0 shrink-0 items-center p-[11px]" aria-label="Back to top">
-            <img src={LOGO} alt="Redbelly DAO logo" width={78} height={40} className="block h-10 w-auto shrink-0" />
+    <div className="min-h-screen bg-[#0f181d]">
+      <header className="sticky top-0 z-50 border-b border-[#27323a] bg-[#121b20]/95 backdrop-blur">
+        <nav className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3 sm:px-6">
+          <a href="#top" className="flex shrink-0 items-center p-[11px]" aria-label="Back to top">
+            <img
+              src={LOGO}
+              alt="Redbelly DAO logo"
+              width={78}
+              height={40}
+              className="block h-10 w-auto shrink-0"
+            />
           </a>
-          <ul className="col-span-2 flex flex-wrap gap-x-5 gap-y-1 text-[12px] tracking-wider uppercase lg:col-span-1">
+          <ul className="flex flex-wrap gap-x-5 gap-y-1 text-[14px] text-[#b8c4cc]">
             {NAV.map((item) => (
               <li key={item.id}>
                 <a
                   href={`#${item.id}`}
-                  className="border-b border-transparent py-1 transition-colors hover:border-b-primary hover:text-primary"
+                  className="border-b border-transparent py-1 transition-colors hover:border-b-[#ffb3ae] hover:text-[#ffb3ae]"
                 >
-                  {item.label}
+                  {item.n}. {item.label}
                 </a>
               </li>
             ))}
@@ -364,55 +354,104 @@ function Playbook() {
         </nav>
       </header>
 
-      <main id="top" className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
-        <section className="py-14 sm:py-20">
-          <h1 className="text-[38px] leading-[1.05] font-bold tracking-[-0.02em] text-primary sm:text-[54px]">
+      <main id="top" className="mx-auto max-w-5xl px-4 pb-24 sm:px-6">
+        {/* HERO */}
+        <section className="bg-[#121b20]/0 py-16 sm:py-20">
+          <p className="font-sans text-[12px] font-bold tracking-[0.1em] text-[#93a4ae] uppercase">
+            Redbelly DAO . Community Support Guide
+          </p>
+          <h1 className="mt-4 text-[38px] leading-[1.05] font-bold tracking-[-0.02em] text-[#e4ebf0] sm:text-[48px]">
             Unstick Your RBNT
           </h1>
-          <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-muted-foreground sm:text-[19px]">
-            Cross-Chain Recovery Playbook — TASK-16, Redbelly DAO Task Board
+          <p className="mt-3 text-[26px] leading-[1.2] font-semibold tracking-[-0.01em] text-[#b8c4cc] sm:text-[32px]">
+            A Cross Chain Recovery Playbook
           </p>
+          <div className="mt-6 max-w-3xl">
+            <P lead>
+              This playbook covers the situations that strand RBNT in practice: tokens sent to the
+              wrong network, bridge transfers that never arrive or never quote, and swaps that fail
+              because the pool on that chain is too thin to absorb the order. Each section names the
+              cause, then gives the recovery path that actually applies.
+            </P>
+          </div>
+          <div className="mt-8">
+            <Warning>
+              Contract deployments, bridge routes and pool depth all change over time. Verify every
+              address and quote against the live source before acting on an amount that matters to
+              you.
+            </Warning>
+          </div>
           <div className="mt-8 flex flex-wrap gap-3">
-            <OutLink href={PDF} variant="solid">
-              <FileText className="h-4 w-4" aria-hidden="true" />
-              View PDF
-            </OutLink>
-            <OutLink href={MD}>
-              <FileCode2 className="h-4 w-4" aria-hidden="true" />
-              View Markdown Source
-            </OutLink>
+            <a
+              href={PDF}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-[4px] bg-[#EF5350] px-5 py-2.5 text-[16px] font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              Read PDF
+              <ExternalLink className="h-4 w-4 shrink-0" aria-hidden="true" />
+            </a>
+            <a
+              href={DOCX}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-[4px] border border-[#3a4650] px-5 py-2.5 text-[16px] font-semibold text-[#e4ebf0] transition-colors hover:text-[#ffb3ae]"
+            >
+              Download DOCX (editable)
+              <ExternalLink className="h-4 w-4 shrink-0" aria-hidden="true" />
+            </a>
           </div>
         </section>
 
-        <div className="space-y-16">
-          {/* SECTION 1 */}
-          <SectionShell id="before-you-bridge" label="Section 01" title="Before You Bridge">
-            <Card>
-              <h3 className="text-[22px] font-semibold text-primary">Where RBNT trades</h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
-                RBNT trades on four exchanges: <Mono>Gate</Mono>, <Mono>MEXC</Mono>,{" "}
-                <Mono>WhiteBIT</Mono>, and <Mono>BYDFi</Mono>. Recovery processes are not equivalent
-                between them, so the exchange you used determines your realistic options.
-              </p>
-            </Card>
+        {/* DOCUMENT PREVIEW */}
+        <section className="pb-16">
+          <Sub>Full document, rendered inline</Sub>
+          <div className="mt-5 rounded-[8px] border border-[#3a4650] bg-[#1e2a31] p-3 sm:p-4">
+            <iframe
+              src={PDF}
+              title="Unstick Your RBNT Recovery Playbook, full PDF"
+              className="h-[70vh] min-h-[520px] w-full rounded-[4px] border-0 bg-[#0a1216]"
+            />
+          </div>
+        </section>
 
-            <div className="grid gap-5 md:grid-cols-2">
-              {EXCHANGES.map((ex) => (
-                <Card key={ex.name} accent>
-                  <h3 className="font-mono text-sm tracking-[0.18em] text-primary uppercase">
-                    {ex.name}
-                  </h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">{ex.body}</p>
-                  <div className="mt-5">
-                    <OutLink href={ex.href}>Recovery Process</OutLink>
+        <div className="space-y-20">
+          {/* SECTION 01 */}
+          <Section id="s1" n="01" title="Before You Bridge">
+            <P lead>
+              Most unrecoverable losses start before any bridge is involved. Sending RBNT to an
+              address on a network the receiving side does not support puts the funds outside the
+              reach of any tool on this page, so the network check is the one step worth slowing
+              down for.
+            </P>
+
+            <div className="space-y-6">
+              <Sub>Where RBNT trades</Sub>
+              <P>
+                RBNT trades on four exchanges, and their recovery processes are not equivalent. The
+                exchange you used determines your realistic options.
+              </P>
+              <div className="grid gap-5 md:grid-cols-2">
+                {EXCHANGES.map((ex) => (
+                  <div
+                    key={ex.name}
+                    className="rounded-[8px] border border-[#3a4650] border-l-4 border-l-[#EF5350] bg-[#1e2a31] p-6"
+                  >
+                    <h4 className="font-mono text-[14px] font-bold tracking-[0.1em] text-[#ffb3ae] uppercase">
+                      {ex.name}
+                    </h4>
+                    <p className="mt-3 text-[16px] leading-[1.5] text-[#b8c4cc]">{ex.body}</p>
+                    <p className="mt-4 text-[16px]">
+                      <A href={ex.href}>Recovery process</A>
+                    </p>
                   </div>
-                </Card>
-              ))}
+                ))}
+              </div>
             </div>
 
             <Card>
-              <h3 className="text-[20px] font-semibold text-primary">Correct deposit procedure</h3>
-              <ol className="mt-4 list-decimal space-y-3 pl-5 text-[15px] leading-relaxed text-muted-foreground">
+              <Sub>Correct deposit procedure</Sub>
+              <ol className="mt-4 list-decimal space-y-3 pl-5 text-[16px] leading-[1.5] text-[#b8c4cc]">
                 <li>Confirm the exchange actually lists RBNT before generating a deposit address.</li>
                 <li>
                   Confirm the exact network the exchange lists for RBNT, and that it matches the
@@ -420,319 +459,358 @@ function Playbook() {
                 </li>
                 <li>Send a small test amount first and wait for it to credit.</li>
                 <li>
-                  Keep the transaction hash, deposit address, and timestamp as evidence in case
+                  Keep the transaction hash, deposit address and timestamp as evidence in case
                   anything goes wrong.
                 </li>
               </ol>
             </Card>
-          </SectionShell>
 
-          {/* SECTION 2 */}
-          <SectionShell id="contracts" label="Section 02" title="Verified Contract Addresses">
-            <Card className="p-0 sm:p-0">
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[720px] border-collapse">
-                  <thead>
-                    <tr>
-                      <Th>Chain</Th>
-                      <Th>Contract Address</Th>
-                      <Th>Confidence</Th>
-                      <Th>Source</Th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {CONTRACT_ROWS.map((row) => (
-                      <tr key={row.chain}>
-                        <Td>{row.chain}</Td>
-                        <Td>
-                          {row.absent ? (
-                            <span className="font-mono text-[12px] text-primary">{row.address}</span>
-                          ) : (
-                            <CopyAddress value={row.address} />
-                          )}
-                        </Td>
-                        <Td>
-                          <Badge level={row.level} />
-                        </Td>
-                        <Td className="text-muted-foreground">{row.source}</Td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+            <P>
+              Never resend funds to an address that has already failed to credit, and never accept
+              help through a direct message. Anyone offering to unstick a transfer for a fee or for
+              your wallet credentials is running a scam, not a recovery service.
+            </P>
+          </Section>
+
+          {/* SECTION 02 */}
+          <Section id="s2" n="02" title="Reference Tables">
+            <div className="space-y-5">
+              <div className="flex flex-wrap items-center gap-3">
+                <Sub>Table A. Wrapped RBNT Contract Addresses</Sub>
+                <span className="inline-flex items-center gap-2 rounded-[4px] border border-[#3a4650] px-2.5 py-1">
+                  <span className="h-2 w-2 rounded-full bg-[#86EFAC]" aria-hidden="true" />
+                  <span className="font-mono text-[12px] font-bold tracking-[0.1em] text-[#ffb3ae] uppercase">
+                    Verified
+                  </span>
+                </span>
               </div>
+              <TablePanel>
+                <thead>
+                  <tr>
+                    <Th>Chain</Th>
+                    <Th>Contract Address</Th>
+                    <Th>Confidence</Th>
+                    <Th>Source</Th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {CONTRACT_ROWS.map((row) => (
+                    <tr key={row.chain}>
+                      <Td className="text-[#e4ebf0]">{row.chain}</Td>
+                      <Td>
+                        {row.level === "Absent" ? (
+                          <span className="font-mono text-[14px] text-[#ffb3ae]">{row.address}</span>
+                        ) : (
+                          <CopyAddress value={row.address} />
+                        )}
+                      </Td>
+                      <Td>
+                        <span
+                          className="font-mono text-[14px] font-bold"
+                          style={{
+                            color:
+                              row.level === "High"
+                                ? "#86EFAC"
+                                : row.level === "Medium"
+                                  ? "#FCD34D"
+                                  : "#ffb3ae",
+                          }}
+                        >
+                          {row.level === "Absent" ? "No token" : row.level}
+                        </span>
+                      </Td>
+                      <Td>{row.source}</Td>
+                    </tr>
+                  ))}
+                </tbody>
+              </TablePanel>
+            </div>
+
+            <div className="space-y-8">
+              <Sub>Table B. Current Swap Liquidity by Chain</Sub>
+              {LIQUIDITY.map((g) => (
+                <div key={g.chain} className="space-y-4">
+                  <h4 className="text-[18px] font-semibold text-[#e4ebf0]">{g.chain}</h4>
+                  <P>{g.intro}</P>
+                  <TablePanel>
+                    <thead>
+                      <tr>
+                        <Th>Swap Size</Th>
+                        <Th>Price Impact</Th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {g.rows.map(([size, impact]) => (
+                        <tr key={size}>
+                          <Td className="font-mono text-[#e4ebf0]">{size}</Td>
+                          <Td
+                            className={`font-mono ${g.flag === impact ? "text-[#ffb3ae]" : "text-[#e4ebf0]"}`}
+                          >
+                            {impact}
+                            {g.flag === impact ? " (effectively unusable)" : ""}
+                          </Td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </TablePanel>
+                </div>
+              ))}
+            </div>
+          </Section>
+
+          {/* SECTION 03 */}
+          <Section id="s3" n="03" title="Failure Mode 1, Wrapped RBNT Zero Value or Swap Fail">
+            <Card>
+              <ol className="space-y-5">
+                <Step n={1} title="Confirm the contract address">
+                  <p>
+                    Compare the token contract in your wallet against Table A, character by
+                    character. A wrapped token showing zero value is very often the wrong contract
+                    rather than a broken one. On BNB Chain there is no official token at all, so any
+                    RBNT looking asset there is an impersonator with no recoverable value.
+                  </p>
+                </Step>
+                <Step n={2} title="Check pool depth before swapping">
+                  <p>
+                    A large price impact warning is the pool being honest with you, not a bug. Table
+                    B shows a 10,000 WRBNT swap on Solana quoting{" "}
+                    <span className="font-mono text-[#ffb3ae]">86.77%</span> impact, which means the
+                    pool cannot absorb your order. Reduce size, split the swap, or move to a chain
+                    with deeper liquidity instead of raising slippage.
+                  </p>
+                </Step>
+                <Step n={3} title="Rule out ordinary transaction issues">
+                  <p>
+                    If the contract matches Table A and the pool depth in Table B is adequate, the
+                    cause is usually mundane: insufficient native gas, an expired quote, or slippage
+                    set too tight. Refresh the quote, confirm your gas balance, and retry once with a
+                    realistic slippage setting on{" "}
+                    <A href={`https://1inch.com/swap?src=1:${ETH}&dst=1:USDT`}>1inch</A>.
+                  </p>
+                </Step>
+              </ol>
+            </Card>
+          </Section>
+
+          {/* SECTION 04 */}
+          <Section
+            id="s4"
+            n="04"
+            title="Failure Mode 2, Quote Unavailable Bridging RBNT Back to Redbelly Network"
+          >
+            <P lead>
+              <A href="https://bridge.lucidlabs.fi/">Lucid Labs Bridge</A> is the official route back
+              to Redbelly Network. When no quote appears, the usual cause is that your source chain
+              is not on the supported list, which is a limitation of the route rather than a fault in
+              your wallet.
+            </P>
+
+            <div className="space-y-4">
+              <Sub>Verified Bridge Routes</Sub>
+              <TablePanel>
+                <thead>
+                  <tr>
+                    <Th>Source Chain</Th>
+                    <Th>Asset</Th>
+                    <Th>Route</Th>
+                    <Th>Fee</Th>
+                    <Th>Time</Th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {BRIDGE_ROUTES.map((r) => (
+                    <tr key={r.source}>
+                      <Td className={r.warn ? "text-[#ffb3ae]" : "text-[#e4ebf0]"}>
+                        <span className="inline-flex items-center gap-2">
+                          {r.warn && (
+                            <AlertTriangle className="h-4 w-4 shrink-0" aria-hidden="true" />
+                          )}
+                          {r.source}
+                        </span>
+                      </Td>
+                      <Td className={`font-mono ${r.warn ? "text-[#ffb3ae]" : "text-[#e4ebf0]"}`}>
+                        {r.asset}
+                      </Td>
+                      <Td className={r.warn ? "text-[#ffb3ae]" : ""}>{r.route}</Td>
+                      <Td className={`font-mono ${r.warn ? "text-[#ffb3ae]" : ""}`}>{r.fee}</Td>
+                      <Td className={`font-mono ${r.warn ? "text-[#ffb3ae]" : ""}`}>{r.time}</Td>
+                    </tr>
+                  ))}
+                </tbody>
+              </TablePanel>
+            </div>
+
+            <Card>
+              <Sub>What to do</Sub>
+              <ul className="mt-4 list-disc space-y-3 pl-5 text-[16px] leading-[1.5] text-[#b8c4cc]">
+                <li>
+                  Check your source chain against the table above before assuming the bridge is
+                  broken.
+                </li>
+                <li>
+                  Treat Solana as unresolvable for now. There is no supported route back to Redbelly
+                  Network from Solana at the time of checking.
+                </li>
+                <li>
+                  Do not repeatedly retry. Each attempt costs gas and returns the same result. Check{" "}
+                  <A href="https://bridge.lucidlabs.fi/">Lucid Labs</A> directly for current chain
+                  support, since chains can be added over time.
+                </li>
+                <li>
+                  Never use an unofficial bridge as a workaround. An unsupported route is an
+                  inconvenience, an unofficial bridge is a risk of total loss.
+                </li>
+              </ul>
+            </Card>
+          </Section>
+
+          {/* SECTION 05 */}
+          <Section id="s5" n="05" title="Failure Mode 3, Stablecoins Stranded on Ethereum Mainnet">
+            <P lead>
+              <A href="https://www.reddex.io/bridge">reddex</A> is the official interface for moving
+              USDC and USDT into Redbelly Network, running on Lucid Labs and Polymer infrastructure.
+              Treat any other interface offering the same transfer as unverified.
+            </P>
+
+            <div className="space-y-4">
+              <Sub>Route and Fee</Sub>
+              <TablePanel>
+                <thead>
+                  <tr>
+                    <Th>Asset</Th>
+                    <Th>Route</Th>
+                    <Th>Fee</Th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {["USDC", "USDT"].map((a) => (
+                    <tr key={a}>
+                      <Td className="font-mono text-[#e4ebf0]">{a}</Td>
+                      <Td>Lucid Labs / Polymer</Td>
+                      <Td className="font-mono text-[#e4ebf0]">1%</Td>
+                    </tr>
+                  ))}
+                </tbody>
+              </TablePanel>
+            </div>
+
+            <Card>
+              <ol className="space-y-5">
+                <Step n={1} title="Confirm the source transaction on Etherscan">
+                  <p>
+                    Confirm the transfer succeeded on Ethereum mainnet, with the correct token
+                    contract, amount and destination. If the source transaction failed, nothing left
+                    your wallet and there is nothing to recover.
+                  </p>
+                </Step>
+                <Step n={2} title="Give it time">
+                  <p>
+                    Polymer transfers normally complete in ten seconds to a few minutes. Anything
+                    past thirty minutes is a genuine delay worth investigating.
+                  </p>
+                </Step>
+                <Step n={3} title="Check reddex directly for status">
+                  <p>
+                    Open <A href="https://www.reddex.io/bridge">reddex</A> and check transfer status
+                    there rather than judging by your wallet balance alone.
+                  </p>
+                </Step>
+                <Step n={4} title="If still stuck, collect evidence and contact support">
+                  <p>Gather the following before opening a ticket:</p>
+                  <ul className="list-disc space-y-2 pl-5">
+                    <li>
+                      <span className="font-semibold text-[#ffb3ae]">Transaction hash</span> of the
+                      source transfer
+                    </li>
+                    <li>
+                      <span className="font-semibold text-[#ffb3ae]">Amount and asset</span> sent
+                    </li>
+                    <li>
+                      <span className="font-semibold text-[#ffb3ae]">Timestamp</span> of the transfer
+                    </li>
+                    <li>
+                      <span className="font-semibold text-[#ffb3ae]">Destination address</span> on
+                      Redbelly Network
+                    </li>
+                  </ul>
+                  <p>
+                    Never resend the funds, and never click Discord or direct message links offering
+                    to unstick the transfer for you.
+                  </p>
+                </Step>
+              </ol>
+            </Card>
+          </Section>
+
+          {/* SECTION 06 */}
+          <Section
+            id="s6"
+            n="06"
+            title="Failure Mode 4, Native RBNT Sent to a CEX Deposit Address by Mistake"
+          >
+            <P lead>
+              Recovery is possible here, but never guaranteed. Each exchange runs a manual process
+              with its own rules, fees and limits, and each reserves the right to decline. Your
+              chances improve sharply when the evidence is complete on the first submission.
+            </P>
+
+            <Card>
+              <Sub>Evidence to collect first</Sub>
+              <ul className="mt-4 space-y-3 text-[16px] leading-[1.5] text-[#b8c4cc]">
+                {[
+                  "Transaction hash of the deposit",
+                  "The exact deposit address you sent to",
+                  "The exact asset and network used",
+                  "Amount and timestamp",
+                  "Your account identifier, UID or registered email",
+                ].map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span
+                      className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-[2px] border border-[#3a4650]"
+                      aria-hidden="true"
+                    />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </Card>
 
-            <div>
-              <h3 className="text-[20px] font-semibold text-primary">Live Swap Links, by chain</h3>
-              <Accordion type="multiple" className="mt-4 space-y-3">
-                {SWAPS.map((s) => (
-                  <AccordionItem
-                    key={s.chain}
-                    value={s.chain}
-                    className="rounded-xl border border-border border-l-4 border-l-primary bg-card px-5"
-                  >
-                    <AccordionTrigger className="text-left">
-                      <span className="font-mono text-sm tracking-[0.15em] text-primary uppercase">
-                        {s.chain}
-                      </span>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <p className="text-[13px] break-all text-muted-foreground">
-                        Contract <Mono>{s.contract}</Mono>
-                      </p>
-                      <div className="mt-4 flex flex-wrap gap-3">
-                        {s.dexes.map((d) => (
-                          <OutLink key={d.name} href={d.href}>
-                            {d.name}
-                          </OutLink>
-                        ))}
-                      </div>
-                      {s.impact.length > 0 && (
-                        <div className="mt-5 rounded-lg bg-muted p-4">
-                          <p className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
-                            Measured price impact
-                          </p>
-                          <ul className="mt-2 space-y-1 font-mono text-[13px]">
-                            {s.impact.map((i) => (
-                              <li key={i}>{i}</li>
-                            ))}
-                          </ul>
-                          {s.warn && (
-                            <p className="mt-3 flex items-center gap-2 text-[13px] font-semibold text-primary">
-                              <AlertTriangle className="h-4 w-4 shrink-0" aria-hidden="true" />
-                              {s.warn}
-                            </p>
-                          )}
-                        </div>
-                      )}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          </SectionShell>
-
-          {/* SECTION 3 */}
-          <SectionShell id="bridges" label="Section 03" title="Official Bridges">
-            <div className="grid gap-5 md:grid-cols-2">
-              <Card accent>
-                <h3 className="font-mono text-sm tracking-[0.18em] text-primary uppercase">
-                  Lucid Labs Bridge
-                </h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
-                  Official route for bringing RBNT and WRBNT back to Redbelly Network from 9 chains:
-                  Ethereum, Arbitrum, Optimism, Base, BSC, Polygon, Avalanche, Sonic, and Solana
-                  (Solana route currently unavailable).
-                </p>
-                <div className="mt-6">
-                  <OutLink href="https://bridge.lucidlabs.fi/" variant="solid">
-                    Open Lucid Labs Bridge
-                  </OutLink>
-                </div>
-              </Card>
-              <Card accent>
-                <h3 className="font-mono text-sm tracking-[0.18em] text-primary uppercase">
-                  Reddex Bridge
-                </h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
-                  Official route for bridging USDC and USDT into Redbelly Network. Runs on the same
-                  Lucid Labs / Polymer infrastructure. Flat 1% fee.
-                </p>
-                <div className="mt-6">
-                  <OutLink href="https://www.reddex.io/bridge" variant="solid">
-                    Open Reddex Bridge
-                  </OutLink>
-                </div>
-              </Card>
-            </div>
-          </SectionShell>
-
-          {/* SECTION 4 */}
-          <SectionShell id="failure-modes" label="Section 04" title="Failure Modes">
-            <Tabs defaultValue="zero" className="w-full">
-              <TabsList className="flex h-auto w-full flex-wrap justify-start gap-2 bg-muted p-1.5">
-                <TabsTrigger value="zero">Zero Value / Swap Fail</TabsTrigger>
-                <TabsTrigger value="quote">Quote Unavailable</TabsTrigger>
-                <TabsTrigger value="stable">Stablecoin Stuck</TabsTrigger>
-                <TabsTrigger value="cex">Wrong CEX Deposit</TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="zero" className="mt-5">
-                <Card>
-                  <ol className="space-y-5">
-                    <Step n={1} title="Confirm the contract address">
-                      <p>
-                        Compare the token contract in your wallet against the table above, character
-                        by character. A wrapped token showing zero value is very often the wrong
-                        contract rather than a broken one. On BNB Chain there is no official token at
-                        all, so any RBNT looking asset there is an impersonator with no recoverable
-                        value.
-                      </p>
-                    </Step>
-                    <Step n={2} title="Check pool depth before swapping">
-                      <p>
-                        A large price impact warning is the pool being honest with you, not a bug. On
-                        Solana (<Mono>{SOL}</Mono>) a 10,000 WRBNT swap quoting 86.77% impact means
-                        the pool cannot absorb your order. Reduce size, split the swap, or move to a
-                        chain with deeper liquidity instead of raising slippage.
-                      </p>
-                    </Step>
-                    <Step n={3} title="Rule out ordinary transaction issues">
-                      <p>
-                        If the contract is right and the pool is deep enough, the cause is usually
-                        mundane: insufficient native gas, an expired quote, or slippage set too
-                        tight. Refresh the quote, confirm your gas balance, and retry once with a
-                        realistic slippage setting on{" "}
-                        <InlineLink href={`https://1inch.com/swap?src=1:${ETH}&dst=1:USDT`}>
-                          1inch
-                        </InlineLink>
-                        .
-                      </p>
-                    </Step>
-                  </ol>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="quote" className="mt-5">
-                <Card>
-                  <ol className="space-y-5">
-                    <Step n={1} title="Check whether your chain is supported">
-                      <p>
-                        <InlineLink href="https://bridge.lucidlabs.fi/">Lucid Labs Bridge</InlineLink>{" "}
-                        is the official route back to Redbelly Network and supports nine source
-                        chains. If your source chain is not one of them, no quote will appear, and
-                        that is expected behaviour rather than a wallet fault.
-                      </p>
-                    </Step>
-                    <Step n={2} title="Treat Solana as unresolvable for now">
-                      <p>
-                        There is no supported route from Solana back to Redbelly Network through the
-                        official bridge at the time of checking. This will not resolve by retrying,
-                        changing wallets, or adjusting the amount.
-                      </p>
-                    </Step>
-                    <Step n={3} title="Do not repeatedly retry">
-                      <p>
-                        Repeated attempts cost gas and produce the same result. Check Lucid Labs
-                        directly for current chain support, since chains can be added over time.
-                      </p>
-                    </Step>
-                    <Step n={4} title="Never use an unofficial bridge as a workaround">
-                      <p>
-                        An unsupported route is a limitation. An unofficial bridge is a risk of total
-                        loss. If a supported path exists from where you hold funds, move to a working
-                        chain first.
-                      </p>
-                    </Step>
-                  </ol>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="stable" className="mt-5">
-                <Card>
-                  <p className="text-[15px] leading-relaxed text-muted-foreground">
-                    <InlineLink href="https://www.reddex.io/bridge">reddex</InlineLink> is Redbelly&apos;s
-                    official interface for USDC and USDT into Redbelly Network, on Lucid Labs /
-                    Polymer, at a flat 1% fee. Treat any other interface offering the same transfer
-                    as unverified.
+            <div className="space-y-6">
+              {CEX_WRITEUPS.map((x) => (
+                <div key={x.name}>
+                  <h4 className="font-mono text-[16px] font-bold tracking-[0.08em] text-[#ffb3ae] uppercase">
+                    {x.name}
+                  </h4>
+                  <p className="mt-2 text-[16px] leading-[1.5] text-[#b8c4cc]">{x.body}</p>
+                  <p className="mt-2 text-[16px]">
+                    <A href={x.href}>Recovery process</A>
                   </p>
-                  <ol className="mt-6 space-y-5">
-                    <Step n={1} title="Confirm the source transaction on Etherscan">
-                      <p>
-                        Confirm the transfer succeeded on Ethereum mainnet, with the correct token
-                        contract, amount, and destination. If the source transaction failed, nothing
-                        left your wallet and there is nothing to recover.
-                      </p>
-                    </Step>
-                    <Step n={2} title="Give it time">
-                      <p>
-                        Polymer transfers normally complete in 10 seconds to a few minutes. Anything
-                        past 30 minutes is a genuine delay worth investigating.
-                      </p>
-                    </Step>
-                    <Step n={3} title="Check reddex directly for status">
-                      <p>
-                        Open{" "}
-                        <InlineLink href="https://www.reddex.io/bridge">reddex</InlineLink> and check
-                        transfer status there rather than judging by your wallet balance alone.
-                      </p>
-                    </Step>
-                    <Step n={4} title="If still stuck, collect evidence and contact support">
-                      <p>Gather the transaction hash, amount and asset, timestamp, and destination address before opening a ticket.</p>
-                      <p>
-                        Never resend the funds, and never click Discord or direct message links
-                        offering to unstick the transfer for you.
-                      </p>
-                    </Step>
-                  </ol>
-                </Card>
-              </TabsContent>
+                </div>
+              ))}
+            </div>
 
-              <TabsContent value="cex" className="mt-5">
-                <Card>
-                  <p className="text-[15px] leading-relaxed text-muted-foreground">
-                    Recovery is possible here, but never guaranteed. Each exchange runs a manual
-                    process with its own rules, fees, and limits, and each reserves the right to
-                    decline.
-                  </p>
-                  <ol className="mt-6 space-y-5">
-                    <Step n={1} title="Collect your evidence first">
-                      <ul className="list-disc space-y-1 pl-5">
-                        <li>Transaction hash of the deposit</li>
-                        <li>The exact deposit address you sent to</li>
-                        <li>The exact asset and network used</li>
-                        <li>Amount and timestamp</li>
-                        <li>Your account identifier (UID or registered email)</li>
-                      </ul>
-                    </Step>
-                    <Step n={2} title="Use the exchange's own recovery path">
-                      <ul className="list-disc space-y-1 pl-5">
-                        <li>
-                          <InlineLink href={EX_LINK.GATE}>Gate</InlineLink>: self service
-                          recovery request tool.
-                        </li>
-                        <li>
-                          <InlineLink href={EX_LINK.MEXC}>MEXC</InlineLink>: wrong deposit
-                          return application, processing fee applies, funds return to the sending
-                          address.
-                        </li>
-                        <li>
-                          <InlineLink href={EX_LINK.BYDFI}>BYDFi</InlineLink>: support ticket
-                          with transaction hash and UID.
-                        </li>
-                        <li>
-                          <InlineLink href={EX_LINK.WHITEBIT}>WhiteBIT</InlineLink>: general support
-                          ticket only, no dedicated tool.
-                        </li>
-                      </ul>
-                    </Step>
-                    <Step n={3} title="Do not make it worse">
-                      <p className="flex gap-2">
-                        <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                        <span>
-                          Never send additional funds to the same address, and never click links
-                          claiming to expedite recovery in exchange for a fee or your wallet
-                          credentials.
-                        </span>
-                      </p>
-                    </Step>
-                  </ol>
-                </Card>
-              </TabsContent>
-            </Tabs>
-          </SectionShell>
+            <Warning>
+              Never send additional funds to the same address, and never click links claiming to
+              expedite recovery in exchange for a fee or your wallet credentials. No exchange will
+              ever ask for a seed phrase or private key.
+            </Warning>
+          </Section>
         </div>
       </main>
 
-      <footer className="border-t border-border bg-secondary py-12">
-        <div className="mx-auto max-w-3xl px-4 text-center">
-          <p className="text-[15px] leading-relaxed text-muted-foreground">
-            This guide reflects live, independently verified data as of August 2026. Always confirm
-            current quotes before acting on amounts that matter to you.
+      <footer className="border-t border-[#27323a] bg-[#0a1216] py-14">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <p className="text-[12px] font-bold tracking-[0.1em] text-[#93a4ae] uppercase">
+            Research deliverable . Redbelly DAO
           </p>
-          <div className="mt-6 flex justify-center">
-            <OutLink href={REPO}>GitHub repo</OutLink>
-          </div>
+          <p className="mt-4 text-[16px] leading-[1.5] text-[#e4ebf0]">
+            Built with <Heart className="inline h-4 w-4 fill-[#ffb3ae] text-[#ffb3ae]" aria-label="love" /> by{" "}
+            <A href={REPO}>0xDarkSeidBull</A>
+          </p>
+          <p className="mt-4 text-[16px] leading-[1.5] text-[#93a4ae] italic">
+            This guide reflects live, independently verified data at the time of publication. Always
+            confirm current addresses, routes and quotes before acting on amounts that matter to you.
+          </p>
         </div>
       </footer>
     </div>

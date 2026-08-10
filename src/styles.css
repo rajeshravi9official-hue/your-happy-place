@@ -37,6 +37,14 @@
   --color-paper-line: var(--paper-line);
   --color-stamp: var(--stamp);
   --color-paper-muted: var(--paper-muted);
+  --color-surface-lifted: var(--surface-lifted);
+  --color-surface-nested: var(--surface-nested);
+  --color-well: var(--well);
+  --color-divider: var(--divider);
+  --color-text-secondary: var(--text-secondary);
+  --color-accent-soft: var(--accent-soft);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
   --font-display: "Be Vietnam Pro", system-ui, sans-serif;
   --font-sans: "Be Vietnam Pro", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -51,25 +59,34 @@
   --paper-muted: oklch(0.47 0.02 258);
   --stamp: oklch(0.5 0.15 27);
 
-  --background: #0a0e14;
-  --foreground: #e8eaed;
-  --card: #111722;
-  --card-foreground: #e8eaed;
-  --popover: #111722;
-  --popover-foreground: #e8eaed;
-  --primary: #ff6b5e;
-  --primary-foreground: #12060a;
-  --secondary: #0e131c;
-  --secondary-foreground: #e8eaed;
-  --muted: #151c28;
-  --muted-foreground: #98a4b3;
-  --accent: #ff6b5e;
-  --accent-foreground: #12060a;
-  --destructive: #ff6b5e;
-  --destructive-foreground: #12060a;
-  --border: #222c3a;
-  --input: #222c3a;
-  --ring: #ff6b5e;
+  --background: #0f181d;
+  --foreground: #e4ebf0;
+  --card: #1e2a31;
+  --card-foreground: #e4ebf0;
+  --popover: #1e2a31;
+  --popover-foreground: #e4ebf0;
+  --primary: #ef5350;
+  --primary-foreground: #ffffff;
+  --secondary: #1b252a;
+  --secondary-foreground: #e4ebf0;
+  --muted: #1b252a;
+  --muted-foreground: #93a4ae;
+  --accent: #ef5350;
+  --accent-foreground: #ffffff;
+  --destructive: #ef5350;
+  --destructive-foreground: #ffffff;
+  --border: #3a4650;
+  --input: #3a4650;
+  --ring: #ef5350;
+
+  --surface-lifted: #121b20;
+  --surface-nested: #1b252a;
+  --well: #0a1216;
+  --divider: #27323a;
+  --text-secondary: #b8c4cc;
+  --accent-soft: #ffb3ae;
+  --ok: #86efac;
+  --warn: #fcd34d;
 }
 
 @layer base {
