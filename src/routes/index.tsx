@@ -232,7 +232,12 @@ const EXCHANGES = [
   },
 ];
 
-const EX_LINK = Object.fromEntries(EXCHANGES.map((e) => [e.name, e.href])) as Record<string, string>;
+const EX_LINK = {
+  GATE: EXCHANGES[0]!.href,
+  MEXC: EXCHANGES[1]!.href,
+  BYDFI: EXCHANGES[2]!.href,
+  WHITEBIT: EXCHANGES[3]!.href,
+};
 
 const CONTRACT_ROWS: {
   chain: string;
