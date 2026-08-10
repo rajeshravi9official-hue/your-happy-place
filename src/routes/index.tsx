@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { AlertTriangle, Check, Copy, ExternalLink } from "lucide-react";
+import { AlertTriangle, Check, Copy, ExternalLink, Heart } from "lucide-react";
 
 const LOGO = "/dao-logo-on-dark.png";
 const REPO = "https://github.com/0xDarkSeidBull/dao-redbelly";
@@ -804,7 +804,8 @@ function Playbook() {
             Research deliverable . Redbelly DAO
           </p>
           <p className="mt-4 text-[16px] leading-[1.5] text-[#e4ebf0]">
-            Built with love by <A href={REPO}>0xDarkSeidBull</A>
+            Built with <Heart className="inline h-4 w-4 fill-[#ffb3ae] text-[#ffb3ae]" aria-label="love" /> by{" "}
+            <A href={REPO}>0xDarkSeidBull</A>
           </p>
           <p className="mt-4 text-[16px] leading-[1.5] text-[#93a4ae] italic">
             This guide reflects live, independently verified data at the time of publication. Always
