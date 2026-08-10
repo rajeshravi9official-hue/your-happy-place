@@ -51,25 +51,25 @@
   --paper-muted: oklch(0.47 0.02 258);
   --stamp: oklch(0.5 0.15 27);
 
-  --background: #0f181d;
-  --foreground: #e4ebf0;
-  --card: #1e2a31;
-  --card-foreground: #e4ebf0;
-  --popover: #1e2a31;
-  --popover-foreground: #e4ebf0;
-  --primary: #ef5350;
-  --primary-foreground: #ffffff;
-  --secondary: #121b20;
-  --secondary-foreground: #e4ebf0;
-  --muted: #1b252a;
-  --muted-foreground: #93a4ae;
-  --accent: #ef5350;
-  --accent-foreground: #ffffff;
-  --destructive: #ef5350;
-  --destructive-foreground: #ffffff;
-  --border: #3a4650;
-  --input: #3a4650;
-  --ring: #ef5350;
+  --background: #0a0e14;
+  --foreground: #e8eaed;
+  --card: #111722;
+  --card-foreground: #e8eaed;
+  --popover: #111722;
+  --popover-foreground: #e8eaed;
+  --primary: #ff6b5e;
+  --primary-foreground: #12060a;
+  --secondary: #0e131c;
+  --secondary-foreground: #e8eaed;
+  --muted: #151c28;
+  --muted-foreground: #98a4b3;
+  --accent: #ff6b5e;
+  --accent-foreground: #12060a;
+  --destructive: #ff6b5e;
+  --destructive-foreground: #12060a;
+  --border: #222c3a;
+  --input: #222c3a;
+  --ring: #ff6b5e;
 }
 
 @layer base {
@@ -78,7 +78,7 @@
   }
 
   body {
-    background-color: #0f181d;
+    background-color: var(--background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     line-height: 1.5;
@@ -92,7 +92,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid #ef5350;
+    outline: 2px solid var(--primary);
     outline-offset: 2px;
   }
 
@@ -103,9 +103,9 @@
 }
 
 @utility paper-card {
-  background-color: #1e2a31;
-  color: #e4ebf0;
-  border: 1px solid #3a4650;
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
 }
 
 @utility stamp {
@@ -115,8 +115,8 @@
   width: 4.25rem;
   height: 4.25rem;
   border-radius: 9999px;
-  border: 2px solid #ef5350;
-  color: #ffb3ae;
+  border: 2px solid var(--primary);
+  color: var(--primary);
   font-family: var(--font-mono);
   font-size: 0.6rem;
   letter-spacing: 0.12em;
