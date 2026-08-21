@@ -803,10 +803,6 @@ function Playbook() {
           <p className="text-[12px] font-bold tracking-[0.1em] text-[#93a4ae] uppercase">
             Research deliverable . Redbelly DAO
           </p>
-          <p className="mt-4 text-[16px] leading-[1.5] text-[#e4ebf0]">
-            Built with <Heart className="inline h-4 w-4 fill-[#ffb3ae] text-[#ffb3ae]" aria-label="love" /> by{" "}
-            <A href={REPO}>0xDarkSeidBull</A>
-          </p>
           <p className="mt-4 text-[16px] leading-[1.5] text-[#93a4ae] italic">
             This guide reflects live, independently verified data at the time of publication. Always
             confirm current addresses, routes and quotes before acting on amounts that matter to you.
