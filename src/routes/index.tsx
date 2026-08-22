@@ -455,22 +455,22 @@ function Playbook() {
               </P>
               <div className="grid gap-5 md:grid-cols-2">
                 {EXCHANGES.map((ex) => {
-                  const isRed = ["GATE", "MEXC", "BYDFI", "WHITEBIT"].includes(ex.name);
+                  const isHighlight = ["GATE", "MEXC", "BYDFI", "WHITEBIT"].includes(ex.name);
                   return (
                     <div
                       key={ex.name}
                       className="overflow-hidden rounded-[8px] border border-[#3a4650] bg-[#1e2a31]"
                     >
-                      <div className={isRed ? "bg-[#EF5350] px-6 py-4" : "px-6 pt-6"}>
+                      <div className={isHighlight ? "bg-[#ffdad7] px-6 py-4" : "px-6 pt-6"}>
                         <h4
                           className={`font-mono text-[14px] font-bold tracking-[0.1em] uppercase ${
-                            isRed ? "text-white" : "text-[#ffb3ae]"
+                            isHighlight ? "text-[#16202A]" : "text-[#ffb3ae]"
                           }`}
                         >
                           {ex.name}
                         </h4>
                       </div>
-                      <div className={isRed ? "px-6 pb-6 pt-4" : "px-6 pb-6"}>
+                      <div className={isHighlight ? "px-6 pb-6 pt-4" : "px-6 pb-6"}>
                         <p className="text-[16px] leading-[1.5] text-[#b8c4cc]">{ex.body}</p>
                         <p className="mt-4 text-[16px]">
                           <A href={ex.href}>Recovery process</A>
