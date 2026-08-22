@@ -455,9 +455,9 @@ function Playbook() {
               </P>
               <div className="grid gap-5 md:grid-cols-2">
                 {EXCHANGES.map((ex) => (
-                  <div
+              <div
                     key={ex.name}
-                    className="rounded-[8px] border border-[#3a4650] border-l-4 border-l-[#EF5350] bg-[#1e2a31] p-6"
+                    className="rounded-[8px] border border-[#3a4650] bg-[#1e2a31] p-6"
                   >
                     <h4 className="font-mono text-[14px] font-bold tracking-[0.1em] text-[#ffb3ae] uppercase">
                       {ex.name}
