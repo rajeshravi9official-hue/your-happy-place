@@ -457,7 +457,7 @@ function Playbook() {
                 {EXCHANGES.map((ex) => (
               <div
                     key={ex.name}
-                    className="rounded-[8px] border border-[#3a4650] bg-[#121b20] p-6"
+                    className="rounded-[8px] border border-[#3a4650] bg-[#1e2a31] p-6"
                   >
                     <h4 className="font-mono text-[14px] font-bold tracking-[0.1em] text-[#ffb3ae] uppercase">
                       {ex.name}
