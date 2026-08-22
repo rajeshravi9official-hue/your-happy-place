@@ -394,18 +394,25 @@ function Playbook() {
               className="inline-flex items-center gap-2 rounded-[4px] bg-[#EF5350] px-5 py-2.5 text-[16px] font-semibold text-white transition-opacity hover:opacity-90"
             >
               Read PDF
-              <ExternalLink className="h-4 w-4 shrink-0" aria-hidden="true" />
             </a>
             <a
               href={DOCX}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-[4px] border border-[#3a4650] px-5 py-2.5 text-[16px] font-semibold text-[#e4ebf0] transition-colors hover:text-[#ffb3ae]"
+              className="inline-flex items-center gap-2 rounded-[4px] bg-[#EF5350] px-5 py-2.5 text-[16px] font-semibold text-white transition-opacity hover:opacity-90"
             >
-              Download DOCX (editable)
-              <ExternalLink className="h-4 w-4 shrink-0" aria-hidden="true" />
+              Read Docs
+            </a>
+            <a
+              href={ARTICLE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-[4px] bg-[#EF5350] px-5 py-2.5 text-[16px] font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              Read Article
             </a>
           </div>
+
         </section>
 
         {/* DOCUMENT PREVIEW */}
