@@ -480,6 +480,7 @@ function Playbook() {
                   );
                 })}
               </div>
+            </div>
 
             <Card>
               <Sub>Correct deposit procedure</Sub>
