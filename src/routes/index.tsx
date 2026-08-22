@@ -461,9 +461,24 @@ function Playbook() {
                       key={ex.name}
                       className="overflow-hidden rounded-[8px] border border-[#3a4650] bg-[#1e2a31]"
                     >
-                      <div className={isGate ? "bg-[#EF5350] px-6 py-4" : "px-6 pt-6
-              </div>
-            </div>
+                      <div className={isGate ? "bg-[#EF5350] px-6 py-4" : "px-6 pt-6"}>
+                        <h4
+                          className={`font-mono text-[14px] font-bold tracking-[0.1em] uppercase ${
+                            isGate ? "text-white" : "text-[#ffb3ae]"
+                          }`}
+                        >
+                          {ex.name}
+                        </h4>
+                      </div>
+                      <div className={isGate ? "px-6 pb-6 pt-4" : "px-6 pb-6"}>
+                        <p className="text-[16px] leading-[1.5] text-[#b8c4cc]">{ex.body}</p>
+                        <p className="mt-4 text-[16px]">
+                          <A href={ex.href}>Recovery process</A>
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
 
             <Card>
               <Sub>Correct deposit procedure</Sub>
