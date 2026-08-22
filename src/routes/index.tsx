@@ -1,13 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { AlertTriangle, Check, Copy, ExternalLink, Heart } from "lucide-react";
+import { DevToIcon, DocsIcon, GithubIcon, PdfIcon } from "@/components/doc-icons";
 
 const LOGO = "/dao-logo-on-dark.png";
 const REPO = "https://github.com/0xDarkSeidBull/dao-redbelly";
 const PDF =
-  "https://cdn.jsdelivr.net/gh/0xDarkSeidBull/dao-redbelly@main/task16-rbnt-recovery-playbook/Unstick_Your_RBNT_Recovery_Playbook_BrandKit.pdf";
+  "https://cdn.jsdelivr.net/gh/0xDarkSeidBull/daotask16@main/Unstick_Your_RBNT_Recovery_Playbook_BrandKit.pdf";
 const DOCX =
-  "https://raw.githubusercontent.com/0xDarkSeidBull/dao-redbelly/main/task16-rbnt-recovery-playbook/Unstick_Your_RBNT_Recovery_Playbook_BrandKit.docx";
+  "https://docs.google.com/viewer?url=https%3A%2F%2Fraw.githubusercontent.com%2F0xDarkSeidBull%2Fdaotask16%2Fmain%2FUnstick_Your_RBNT_Recovery_Playbook_BrandKit.docx&embedded=false";
+const ARTICLE =
+  "https://dev.to/0xdarkseidbull/unstick-your-rbnt-building-a-recovery-playbook-nobody-wants-to-need-3aka";
+const GITHUB_REPO = "https://github.com/0xDarkSeidBull/daotask16/";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -389,18 +394,25 @@ function Playbook() {
               className="inline-flex items-center gap-2 rounded-[4px] bg-[#EF5350] px-5 py-2.5 text-[16px] font-semibold text-white transition-opacity hover:opacity-90"
             >
               Read PDF
-              <ExternalLink className="h-4 w-4 shrink-0" aria-hidden="true" />
             </a>
             <a
               href={DOCX}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-[4px] border border-[#3a4650] px-5 py-2.5 text-[16px] font-semibold text-[#e4ebf0] transition-colors hover:text-[#ffb3ae]"
+              className="inline-flex items-center gap-2 rounded-[4px] bg-[#EF5350] px-5 py-2.5 text-[16px] font-semibold text-white transition-opacity hover:opacity-90"
             >
-              Download DOCX (editable)
-              <ExternalLink className="h-4 w-4 shrink-0" aria-hidden="true" />
+              Read Docs
+            </a>
+            <a
+              href={ARTICLE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-[4px] bg-[#EF5350] px-5 py-2.5 text-[16px] font-semibold text-white transition-opacity hover:opacity-90"
+            >
+              Read Article
             </a>
           </div>
+
         </section>
 
         {/* DOCUMENT PREVIEW */}
@@ -800,6 +812,27 @@ function Playbook() {
 
       <footer className="border-t border-[#27323a] bg-[#0a1216] py-14">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <div className="mb-10 flex flex-wrap items-center justify-center gap-8">
+            {[
+              { href: PDF, label: "Read the PDF", Icon: PdfIcon },
+              { href: DOCX, label: "Read the DOCX", Icon: DocsIcon },
+              { href: ARTICLE, label: "Read the dev.to article", Icon: DevToIcon },
+              { href: GITHUB_REPO, label: "View the GitHub repository", Icon: GithubIcon },
+            ].map(({ href, label, Icon }) => (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                title={label}
+                className="text-[#93a4ae] transition-colors hover:text-[#EF5350]"
+              >
+                <Icon className="h-8 w-8" aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+
           <p className="text-[12px] font-bold tracking-[0.1em] text-[#93a4ae] uppercase">
             Research deliverable . Redbelly DAO
           </p>
