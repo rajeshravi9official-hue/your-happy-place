@@ -663,23 +663,19 @@ function Playbook() {
                 </thead>
                 <tbody>
                   {BRIDGE_ROUTES.map((r) => (
-                    <tr key={r.source}>
-                      <Td className={r.warn ? "text-[#ffb3ae]" : "text-[#e4ebf0]"}>
-                        <span className="inline-flex items-center gap-2">
-                          {r.warn && (
-                            <AlertTriangle className="h-4 w-4 shrink-0" aria-hidden="true" />
-                          )}
-                          {r.source}
-                        </span>
+                    <tr key={r.source} className={r.warn ? "bg-[#ffdad7]" : ""}>
+                      <Td className={r.warn ? "text-[#16202A] font-semibold" : "text-[#e4ebf0]"}>
+                        {r.source}
                       </Td>
-                      <Td className={`font-mono ${r.warn ? "text-[#ffb3ae]" : "text-[#e4ebf0]"}`}>
+                      <Td className={`font-mono ${r.warn ? "text-[#16202A]" : "text-[#e4ebf0]"}`}>
                         {r.asset}
                       </Td>
-                      <Td className={r.warn ? "text-[#ffb3ae]" : ""}>{r.route}</Td>
-                      <Td className={`font-mono ${r.warn ? "text-[#ffb3ae]" : ""}`}>{r.fee}</Td>
-                      <Td className={`font-mono ${r.warn ? "text-[#ffb3ae]" : ""}`}>{r.time}</Td>
+                      <Td className={r.warn ? "text-[#16202A]" : ""}>{r.route}</Td>
+                      <Td className={`font-mono ${r.warn ? "text-[#16202A]" : ""}`}>{r.fee}</Td>
+                      <Td className={`font-mono ${r.warn ? "text-[#16202A]" : ""}`}>{r.time}</Td>
                     </tr>
                   ))}
+
                 </tbody>
               </TablePanel>
             </div>
