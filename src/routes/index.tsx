@@ -1,13 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { AlertTriangle, Check, Copy, ExternalLink, Heart } from "lucide-react";
+import { DevToIcon, DocsIcon, GithubIcon, PdfIcon } from "@/components/doc-icons";
 
 const LOGO = "/dao-logo-on-dark.png";
 const REPO = "https://github.com/0xDarkSeidBull/dao-redbelly";
 const PDF =
-  "https://cdn.jsdelivr.net/gh/0xDarkSeidBull/dao-redbelly@main/task16-rbnt-recovery-playbook/Unstick_Your_RBNT_Recovery_Playbook_BrandKit.pdf";
+  "https://cdn.jsdelivr.net/gh/0xDarkSeidBull/daotask16@main/Unstick_Your_RBNT_Recovery_Playbook_BrandKit.pdf";
 const DOCX =
-  "https://raw.githubusercontent.com/0xDarkSeidBull/dao-redbelly/main/task16-rbnt-recovery-playbook/Unstick_Your_RBNT_Recovery_Playbook_BrandKit.docx";
+  "https://docs.google.com/viewer?url=https%3A%2F%2Fraw.githubusercontent.com%2F0xDarkSeidBull%2Fdaotask16%2Fmain%2FUnstick_Your_RBNT_Recovery_Playbook_BrandKit.docx&embedded=false";
+const ARTICLE =
+  "https://dev.to/0xdarkseidbull/unstick-your-rbnt-building-a-recovery-playbook-nobody-wants-to-need-3aka";
+const GITHUB_REPO = "https://github.com/0xDarkSeidBull/daotask16/";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
