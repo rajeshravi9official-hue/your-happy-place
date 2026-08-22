@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { AlertTriangle, Check, Copy, ExternalLink, Heart } from "lucide-react";
+import { Check, Copy, ExternalLink, Heart } from "lucide-react";
 import { DevToIcon, DocsIcon, GithubIcon, PdfIcon } from "@/components/doc-icons";
 
 const LOGO = "/dao-logo-on-dark.png";
