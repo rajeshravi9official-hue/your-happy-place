@@ -463,8 +463,8 @@ function Playbook() {
                     >
                       <div className={isHighlight ? "bg-[#ffdad7] px-6 py-4" : "px-6 pt-6"}>
                         <h4
-                          className={`font-mono text-[14px] font-bold tracking-[0.1em] uppercase ${
-                            isHighlight ? "text-[#16202A]" : "text-[#ffb3ae]"
+                          className={`text-[16px] leading-[1.5] font-semibold ${
+                            isHighlight ? "text-[#16202A]" : "font-mono text-[14px] font-bold tracking-[0.1em] uppercase text-[#ffb3ae]"
                           }`}
                         >
                           {ex.name}
