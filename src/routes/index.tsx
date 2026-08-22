@@ -812,6 +812,27 @@ function Playbook() {
 
       <footer className="border-t border-[#27323a] bg-[#0a1216] py-14">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <div className="mb-10 flex flex-wrap items-center justify-center gap-8">
+            {[
+              { href: PDF, label: "Read the PDF", Icon: PdfIcon },
+              { href: DOCX, label: "Read the DOCX", Icon: DocsIcon },
+              { href: ARTICLE, label: "Read the dev.to article", Icon: DevToIcon },
+              { href: GITHUB_REPO, label: "View the GitHub repository", Icon: GithubIcon },
+            ].map(({ href, label, Icon }) => (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                title={label}
+                className="text-[#93a4ae] transition-colors hover:text-[#EF5350]"
+              >
+                <Icon className="h-8 w-8" aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+
           <p className="text-[12px] font-bold tracking-[0.1em] text-[#93a4ae] uppercase">
             Research deliverable . Redbelly DAO
           </p>
