@@ -822,7 +822,15 @@ function Playbook() {
 
       <footer className="border-t border-[#27323a] bg-[#0a1216] py-14">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <div className="mb-10 flex flex-wrap items-center justify-center gap-8">
+          <p className="text-[12px] font-bold tracking-[0.1em] text-[#93a4ae] uppercase">
+            Research deliverable . Redbelly DAO
+          </p>
+          <p className="mt-4 text-[16px] leading-[1.5] text-[#93a4ae] italic">
+            This guide reflects live, independently verified data at the time of publication. Always
+            confirm current addresses, routes and quotes before acting on amounts that matter to you.
+          </p>
+
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-8">
             {[
               { href: PDF, label: "Read the PDF", Icon: PdfIcon },
               { href: DOCX, label: "Read the DOCX", Icon: DocsIcon },
@@ -843,13 +851,6 @@ function Playbook() {
             ))}
           </div>
 
-          <p className="text-[12px] font-bold tracking-[0.1em] text-[#93a4ae] uppercase">
-            Research deliverable . Redbelly DAO
-          </p>
-          <p className="mt-4 text-[16px] leading-[1.5] text-[#93a4ae] italic">
-            This guide reflects live, independently verified data at the time of publication. Always
-            confirm current addresses, routes and quotes before acting on amounts that matter to you.
-          </p>
         </div>
       </footer>
     </div>
