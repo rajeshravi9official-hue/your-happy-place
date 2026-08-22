@@ -55,16 +55,26 @@ function Card({ children, className = "" }: { children: React.ReactNode; classNa
   );
 }
 
-function Warning({ children }: { children: React.ReactNode }) {
+function Warning({ title, children }: { title?: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-[8px] border border-[#3a4650] border-t-4 border-t-[#EF5350] bg-[#1e2a31] p-6 sm:p-7">
-      <p className="font-mono text-[12px] font-bold tracking-[0.1em] text-[#ffb3ae] uppercase">
-        Warning
-      </p>
-      <div className="mt-3 text-[16px] leading-[1.5] text-[#b8c4cc]">{children}</div>
+    <div className="overflow-hidden rounded-[8px]">
+      <div className="bg-[#EF5350] px-6 py-5 sm:px-7">
+        <p className="font-mono text-[12px] font-bold tracking-[0.1em] text-white uppercase">
+          <span aria-hidden="true">&#10007;</span> Warning . Read First
+        </p>
+        {title ? (
+          <h3 className="mt-3 text-[26px] leading-[1.2] font-bold text-white sm:text-[30px]">
+            {title}
+          </h3>
+        ) : null}
+      </div>
+      <div className="bg-[#ffdad7] px-6 py-5 text-[16px] leading-[1.5] font-semibold text-[#16202A] sm:px-7">
+        {children}
+      </div>
     </div>
   );
 }
+
 
 function Section({
   id,
