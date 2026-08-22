@@ -654,12 +654,7 @@ function Playbook() {
                   {BRIDGE_ROUTES.map((r) => (
                     <tr key={r.source}>
                       <Td className={r.warn ? "text-[#ffb3ae]" : "text-[#e4ebf0]"}>
-                        <span className="inline-flex items-center gap-2">
-                          {r.warn && (
-                            <AlertTriangle className="h-4 w-4 shrink-0" aria-hidden="true" />
-                          )}
-                          {r.source}
-                        </span>
+                        {r.source}
                       </Td>
                       <Td className={`font-mono ${r.warn ? "text-[#ffb3ae]" : "text-[#e4ebf0]"}`}>
                         {r.asset}
