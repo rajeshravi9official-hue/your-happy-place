@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { AlertTriangle, Check, Copy, ExternalLink, Heart } from "lucide-react";
+import { Check, Copy, ExternalLink, Heart } from "lucide-react";
 import { DevToIcon, DocsIcon, GithubIcon, PdfIcon } from "@/components/doc-icons";
 
 const LOGO = "/dao-logo-on-dark.png";
@@ -527,12 +527,16 @@ function Playbook() {
                   </tr>
                 </thead>
                 <tbody>
-                  {CONTRACT_ROWS.map((row) => (
-                    <tr key={row.chain}>
-                      <Td className="text-[#e4ebf0]">{row.chain}</Td>
+                  {CONTRACT_ROWS.map((row) => {
+                    const flagged = row.level === "Absent";
+                    return (
+                    <tr key={row.chain} className={flagged ? "bg-[#ffdad7]" : ""}>
+                      <Td className={flagged ? "text-[#16202A] font-semibold" : "text-[#e4ebf0]"}>
+                        {row.chain}
+                      </Td>
                       <Td>
-                        {row.level === "Absent" ? (
-                          <span className="font-mono text-[14px] text-[#ffb3ae]">{row.address}</span>
+                        {flagged ? (
+                          <span className="font-mono text-[14px] text-[#16202A]">{row.address}</span>
                         ) : (
                           <CopyAddress value={row.address} />
                         )}
@@ -546,15 +550,17 @@ function Playbook() {
                                 ? "#86EFAC"
                                 : row.level === "Medium"
                                   ? "#FCD34D"
-                                  : "#ffb3ae",
+                                  : "#16202A",
                           }}
                         >
                           {row.level === "Absent" ? "No token" : row.level}
                         </span>
                       </Td>
-                      <Td>{row.source}</Td>
+                      <Td className={flagged ? "text-[#16202A]" : ""}>{row.source}</Td>
                     </tr>
-                  ))}
+                    );
+                  })}
+
                 </tbody>
               </TablePanel>
             </div>
@@ -574,16 +580,21 @@ function Playbook() {
                     </thead>
                     <tbody>
                       {g.rows.map(([size, impact]) => (
-                        <tr key={size}>
-                          <Td className="font-mono text-[#e4ebf0]">{size}</Td>
+                        <tr key={size} className={g.flag === impact ? "bg-[#ffdad7]" : ""}>
                           <Td
-                            className={`font-mono ${g.flag === impact ? "text-[#ffb3ae]" : "text-[#e4ebf0]"}`}
+                            className={`font-mono ${g.flag === impact ? "text-[#16202A]" : "text-[#e4ebf0]"}`}
+                          >
+                            {size}
+                          </Td>
+                          <Td
+                            className={`font-mono ${g.flag === impact ? "text-[#16202A] font-semibold" : "text-[#e4ebf0]"}`}
                           >
                             {impact}
                             {g.flag === impact ? " (effectively unusable)" : ""}
                           </Td>
                         </tr>
                       ))}
+
                     </tbody>
                   </TablePanel>
                 </div>
@@ -652,23 +663,19 @@ function Playbook() {
                 </thead>
                 <tbody>
                   {BRIDGE_ROUTES.map((r) => (
-                    <tr key={r.source}>
-                      <Td className={r.warn ? "text-[#ffb3ae]" : "text-[#e4ebf0]"}>
-                        <span className="inline-flex items-center gap-2">
-                          {r.warn && (
-                            <AlertTriangle className="h-4 w-4 shrink-0" aria-hidden="true" />
-                          )}
-                          {r.source}
-                        </span>
+                    <tr key={r.source} className={r.warn ? "bg-[#ffdad7]" : ""}>
+                      <Td className={r.warn ? "text-[#16202A] font-semibold" : "text-[#e4ebf0]"}>
+                        {r.source}
                       </Td>
-                      <Td className={`font-mono ${r.warn ? "text-[#ffb3ae]" : "text-[#e4ebf0]"}`}>
+                      <Td className={`font-mono ${r.warn ? "text-[#16202A]" : "text-[#e4ebf0]"}`}>
                         {r.asset}
                       </Td>
-                      <Td className={r.warn ? "text-[#ffb3ae]" : ""}>{r.route}</Td>
-                      <Td className={`font-mono ${r.warn ? "text-[#ffb3ae]" : ""}`}>{r.fee}</Td>
-                      <Td className={`font-mono ${r.warn ? "text-[#ffb3ae]" : ""}`}>{r.time}</Td>
+                      <Td className={r.warn ? "text-[#16202A]" : ""}>{r.route}</Td>
+                      <Td className={`font-mono ${r.warn ? "text-[#16202A]" : ""}`}>{r.fee}</Td>
+                      <Td className={`font-mono ${r.warn ? "text-[#16202A]" : ""}`}>{r.time}</Td>
                     </tr>
                   ))}
+
                 </tbody>
               </TablePanel>
             </div>
