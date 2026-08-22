@@ -527,12 +527,16 @@ function Playbook() {
                   </tr>
                 </thead>
                 <tbody>
-                  {CONTRACT_ROWS.map((row) => (
-                    <tr key={row.chain}>
-                      <Td className="text-[#e4ebf0]">{row.chain}</Td>
+                  {CONTRACT_ROWS.map((row) => {
+                    const flagged = row.level === "Absent";
+                    return (
+                    <tr key={row.chain} className={flagged ? "bg-[#ffdad7]" : ""}>
+                      <Td className={flagged ? "text-[#16202A] font-semibold" : "text-[#e4ebf0]"}>
+                        {row.chain}
+                      </Td>
                       <Td>
-                        {row.level === "Absent" ? (
-                          <span className="font-mono text-[14px] text-[#ffb3ae]">{row.address}</span>
+                        {flagged ? (
+                          <span className="font-mono text-[14px] text-[#16202A]">{row.address}</span>
                         ) : (
                           <CopyAddress value={row.address} />
                         )}
@@ -546,15 +550,17 @@ function Playbook() {
                                 ? "#86EFAC"
                                 : row.level === "Medium"
                                   ? "#FCD34D"
-                                  : "#ffb3ae",
+                                  : "#16202A",
                           }}
                         >
                           {row.level === "Absent" ? "No token" : row.level}
                         </span>
                       </Td>
-                      <Td>{row.source}</Td>
+                      <Td className={flagged ? "text-[#16202A]" : ""}>{row.source}</Td>
                     </tr>
-                  ))}
+                    );
+                  })}
+
                 </tbody>
               </TablePanel>
             </div>
