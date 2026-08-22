@@ -580,16 +580,21 @@ function Playbook() {
                     </thead>
                     <tbody>
                       {g.rows.map(([size, impact]) => (
-                        <tr key={size}>
-                          <Td className="font-mono text-[#e4ebf0]">{size}</Td>
+                        <tr key={size} className={g.flag === impact ? "bg-[#ffdad7]" : ""}>
                           <Td
-                            className={`font-mono ${g.flag === impact ? "text-[#ffb3ae]" : "text-[#e4ebf0]"}`}
+                            className={`font-mono ${g.flag === impact ? "text-[#16202A]" : "text-[#e4ebf0]"}`}
+                          >
+                            {size}
+                          </Td>
+                          <Td
+                            className={`font-mono ${g.flag === impact ? "text-[#16202A] font-semibold" : "text-[#e4ebf0]"}`}
                           >
                             {impact}
                             {g.flag === impact ? " (effectively unusable)" : ""}
                           </Td>
                         </tr>
                       ))}
+
                     </tbody>
                   </TablePanel>
                 </div>
