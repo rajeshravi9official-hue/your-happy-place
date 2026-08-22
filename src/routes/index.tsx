@@ -60,7 +60,7 @@ function Warning({ title, children }: { title?: string; children: React.ReactNod
     <div className="overflow-hidden rounded-[8px]">
       <div className="bg-[#EF5350] px-6 py-5 sm:px-7">
         <p className="font-mono text-[12px] font-bold tracking-[0.1em] text-white uppercase">
-          <span aria-hidden="true">&#10007;</span> Warning . Read First
+          Warning . Read First
         </p>
         {title ? (
           <h3 className="mt-3 text-[26px] leading-[1.2] font-bold text-white sm:text-[30px]">
