@@ -454,20 +454,14 @@ function Playbook() {
                 exchange you used determines your realistic options.
               </P>
               <div className="grid gap-5 md:grid-cols-2">
-                {EXCHANGES.map((ex) => (
-              <div
-                    key={ex.name}
-                    className="rounded-[8px] border border-[#3a4650] bg-[#1e2a31] p-6"
-                  >
-                    <h4 className="font-mono text-[14px] font-bold tracking-[0.1em] text-[#ffb3ae] uppercase">
-                      {ex.name}
-                    </h4>
-                    <p className="mt-3 text-[16px] leading-[1.5] text-[#b8c4cc]">{ex.body}</p>
-                    <p className="mt-4 text-[16px]">
-                      <A href={ex.href}>Recovery process</A>
-                    </p>
-                  </div>
-                ))}
+                {EXCHANGES.map((ex) => {
+                  const isGate = ex.name === "GATE";
+                  return (
+                    <div
+                      key={ex.name}
+                      className="overflow-hidden rounded-[8px] border border-[#3a4650] bg-[#1e2a31]"
+                    >
+                      <div className={isGate ? "bg-[#EF5350] px-6 py-4" : "px-6 pt-6
               </div>
             </div>
 
